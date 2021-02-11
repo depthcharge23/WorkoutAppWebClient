@@ -4,13 +4,14 @@ import './RegimenList.css';
 // Import Custom Components
 import RegimenItem from "../regimen-item/RegimenItem";
 
-const RegimenList = () => {
+const RegimenList = (props) => {
     return (
         <ul>
-            <li>Leg Day</li>
-            <li>CHEST!</li>
-            <li>Bis & Back</li>
-            <li><RegimenItem /></li>
+            {
+                props.regimens.map((regimen, index) => (
+                    <li><RegimenItem regimen={ regimen } key={ index } /></li>
+                ))
+            }
         </ul>
     );
 }
