@@ -21,13 +21,24 @@ class RegimenContainer extends React.Component {
                 }
             ]
         };
+
+        this.handleOnDelete = this.handleOnDelete.bind(this);
+    }
+
+    handleOnDelete (i) {
+        const regimens = this.state.regimens.slice();
+        regimens.splice(i, 1);
+
+        this.setState({
+            "regimens": regimens
+        });
     }
 
     render () {
         return (
             <>
                 <h2>Regimen</h2>
-                <RegimenList regimens={ this.state.regimens } />
+                <RegimenList regimens={ this.state.regimens } handleOnDelete={ this.handleOnDelete } />
             </>
         );
     }

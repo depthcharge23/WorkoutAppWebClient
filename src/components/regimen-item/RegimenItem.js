@@ -5,6 +5,7 @@ const RegimenItem = (props) => {
     return (
         <>
             { props.regimen.regimenName }
+            <button onClick={ () => { props.onDelete(props.index); } }>X</button>
         </>
     );
 }
