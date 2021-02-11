@@ -1,10 +1,10 @@
 import React from "react";
 import './RegimenItem.css';
 
-const RegimenItem = () => {
+const RegimenItem = (props) => {
     return (
         <>
-            Hello world!
+            { props.regimen.regimenName }
         </>
     );
 }
