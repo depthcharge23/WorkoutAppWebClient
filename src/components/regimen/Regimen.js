@@ -6,8 +6,8 @@ class Regimen extends React.Component {
         super(props);
 
         this.state = {
-            "regimenName": "",
-            "restBetweenWorkout": 0
+            "regimenName": this.props.regimen && this.props.regimen.regimenName ? this.props.regimen.regimenName : "",
+            "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : 0
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);

@@ -13,19 +13,25 @@ class RegimenContainer extends React.Component {
             "component": "regimenList",
             "regimens": [
                 {
-                    "regimenName": "Leg Day"
+                    "regimenName": "Leg Day",
+                    "restBetweenWorkout": 1
                 },
                 {
-                    "regimenName": "CHEST!"
+                    "regimenName": "CHEST!",
+                    "restBetweenWorkout": 2
                 },
                 {
-                    "regimenName": "Bis & Back"
+                    "regimenName": "Bis & Back",
+                    "restBetweenWorkout": 3
                 }
-            ]
+            ],
+            "selectedRegimen": null
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
         this.handleOnCreate = this.handleOnCreate.bind(this);
+        this.handleRegimenSelect = this.handleRegimenSelect.bind(this);
+
         this.showCreateRegimen = this.showCreateRegimen.bind(this);
         this.showRegimenList = this.showRegimenList.bind(this);
     }
@@ -52,8 +58,16 @@ class RegimenContainer extends React.Component {
         });
     }
 
+    handleRegimenSelect (i) {
+        this.setState({
+            "selectedRegimen": this.state.regimens[i],
+            "component": "regimen"
+        });
+    }
+
     showCreateRegimen () {
         this.setState({
+            "selectedRegimen": null,
             "component": "regimen"
         });
     }
@@ -69,10 +83,19 @@ class RegimenContainer extends React.Component {
 
         switch (this.state.component) {
             case "regimenList":
-                component = <RegimenList regimens={ this.state.regimens } handleOnDelete={ this.handleOnDelete } showCreateRegimen={ this.showCreateRegimen } />;
+                component = <RegimenList
+                    regimens={ this.state.regimens }
+                    handleRegimenSelect={ this.handleRegimenSelect }
+                    handleOnDelete={ this.handleOnDelete }
+                    showCreateRegimen={ this.showCreateRegimen }
+                />;
                 break;
             case "regimen":
-                component = <Regimen handleOnCreate={ this.handleOnCreate } showRegimenList={ this.showRegimenList } />;
+                component = <Regimen
+                    regimen={ this.state.selectedRegimen }
+                    handleOnCreate={ this.handleOnCreate }
+                    showRegimenList={ this.showRegimenList }
+                />;
                 break;
             default:
                 break;

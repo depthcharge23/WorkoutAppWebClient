@@ -7,6 +7,7 @@ import RegimenItem from "../regimen-item/RegimenItem";
 const RegimenList = (props) => {
     return (
         <>
+            <h2>Your Regimens</h2>
             <ul>
                 {
                     props.regimens.map((regimen, index) => (
@@ -15,6 +16,7 @@ const RegimenList = (props) => {
                                 regimen={ regimen } 
                                 index={ index }
                                 onDelete={ props.handleOnDelete }
+                                onRegimenSelect={ props.handleRegimenSelect }
                             />
                         </li>
                     ))
