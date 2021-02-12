@@ -39,6 +39,7 @@ class RegimenContainer extends React.Component {
             <>
                 <h2>Regimen</h2>
                 <RegimenList regimens={ this.state.regimens } handleOnDelete={ this.handleOnDelete } />
+                <button>Create Regimen</button>
             </>
         );
     }
