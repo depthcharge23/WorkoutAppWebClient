@@ -10,6 +10,7 @@ class RegimenContainer extends React.Component {
         super();
 
         this.state = {
+            "component": "regimenList",
             "regimens": [
                 {
                     "regimenName": "Leg Day"
@@ -25,6 +26,8 @@ class RegimenContainer extends React.Component {
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
         this.handleOnCreate = this.handleOnCreate.bind(this);
+        this.showCreateRegimen = this.showCreateRegimen.bind(this);
+        this.showRegimenList = this.showRegimenList.bind(this);
     }
 
     handleOnDelete (i) {
@@ -44,16 +47,41 @@ class RegimenContainer extends React.Component {
         });
 
         this.setState({
+            "component": "regimenList",
             "regimens": regimens
         });
     }
 
+    showCreateRegimen () {
+        this.setState({
+            "component": "regimen"
+        });
+    }
+
+    showRegimenList () {
+        this.setState({
+            "component": "regimenList"
+        });
+    }
+
     render () {
+        let component = null;
+
+        switch (this.state.component) {
+            case "regimenList":
+                component = <RegimenList regimens={ this.state.regimens } handleOnDelete={ this.handleOnDelete } showCreateRegimen={ this.showCreateRegimen } />;
+                break;
+            case "regimen":
+                component = <Regimen handleOnCreate={ this.handleOnCreate } showRegimenList={ this.showRegimenList } />;
+                break;
+            default:
+                break;
+        }
+
+
         return (
             <>
-                <RegimenList regimens={ this.state.regimens } handleOnDelete={ this.handleOnDelete } />
-                <Regimen handleOnCreate={ this.handleOnCreate } />
-                <button>Create Regimen</button>
+                { component }
             </>
         );
     }

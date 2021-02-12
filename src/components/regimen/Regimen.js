@@ -46,12 +46,22 @@ class Regimen extends React.Component {
         return (
             <form onSubmit={ this.handleSubmit }>
                 <label htmlFor="regimen-name">Regimen Name</label>
-                <input type="text" name="regimen-name" value={ this.state.regimenName } onChange={ this.handleOnRegimenNameChange } />
+                <input 
+                    type="text"
+                    name="regimen-name"
+                    value={ this.state.regimenName }
+                    onChange={ this.handleOnRegimenNameChange } 
+                />
 
                 <label htmlFor="rest-between-workout">Rest Between Workout</label>
-                <input type="integer" name="rest-between-workout" value={ this.state.restBetweenWorkout } onChange={ this.handleOnRestBetweenWorkoutChange } />
+                <input 
+                    type="integer"
+                    name="rest-between-workout"
+                    value={ this.state.restBetweenWorkout }
+                    onChange={ this.handleOnRestBetweenWorkoutChange }
+                />
 
-                <button>Back</button>
+                <button onClick={ this.props.showRegimenList } >Back</button>
                 <button type="submit">Submit</button>
             </form>
         );

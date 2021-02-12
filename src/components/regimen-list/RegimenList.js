@@ -6,19 +6,22 @@ import RegimenItem from "../regimen-item/RegimenItem";
 
 const RegimenList = (props) => {
     return (
-        <ul>
-            {
-                props.regimens.map((regimen, index) => (
-                    <li key={ index }>
-                        <RegimenItem 
-                            regimen={ regimen } 
-                            index={ index }
-                            onDelete={ props.handleOnDelete }
-                        />
-                    </li>
-                ))
-            }
-        </ul>
+        <>
+            <ul>
+                {
+                    props.regimens.map((regimen, index) => (
+                        <li key={ index }>
+                            <RegimenItem 
+                                regimen={ regimen } 
+                                index={ index }
+                                onDelete={ props.handleOnDelete }
+                            />
+                        </li>
+                    ))
+                }
+            </ul>
+            <button onClick={ props.showCreateRegimen } >Create Regimen</button>
+        </>
     );
 }
 
