@@ -9,7 +9,13 @@ const RegimenList = (props) => {
         <ul>
             {
                 props.regimens.map((regimen, index) => (
-                    <li key={ index }><RegimenItem regimen={ regimen } index={ index }  onDelete={ props.handleOnDelete } /></li>
+                    <li key={ index }>
+                        <RegimenItem 
+                            regimen={ regimen } 
+                            index={ index }
+                            onDelete={ props.handleOnDelete }
+                        />
+                    </li>
                 ))
             }
         </ul>

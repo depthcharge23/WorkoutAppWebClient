@@ -2,14 +2,54 @@ import React from "react";
 import './Regimen.css';
 
 class Regimen extends React.Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            "regimenName": "",
+            "restBetweenWorkout": 0
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleOnRegimenNameChange = this.handleOnRegimenNameChange.bind(this);
+        this.handleOnRestBetweenWorkoutChange = this.handleOnRestBetweenWorkoutChange.bind(this);
+    }
+
+    handleSubmit (e) {
+        e.preventDefault();
+        
+        this.props.handleOnCreate(this.state.regimenName, this.state.restBetweenWorkout);
+
+        this.setState({
+            "regimenName": "",
+            "restBetweenWorkout": 0
+        });
+    }
+
+    handleOnRegimenNameChange (e) {
+        const regimenName = e.target.value;
+
+        this.setState({
+            "regimenName": regimenName
+        });
+    }
+
+    handleOnRestBetweenWorkoutChange (e) {
+        const restBetweenWorkout = e.target.value;
+
+        this.setState({
+            "restBetweenWorkout": restBetweenWorkout
+        });
+    }
+
     render () {
         return (
-            <form>
+            <form onSubmit={ this.handleSubmit }>
                 <label htmlFor="regimen-name">Regimen Name</label>
-                <input type="text" name="regimen-name" />
+                <input type="text" name="regimen-name" value={ this.state.regimenName } onChange={ this.handleOnRegimenNameChange } />
 
                 <label htmlFor="rest-between-workout">Rest Between Workout</label>
-                <input type="integer" name="rest-between-workout" />
+                <input type="integer" name="rest-between-workout" value={ this.state.restBetweenWorkout } onChange={ this.handleOnRestBetweenWorkoutChange } />
 
                 <button>Back</button>
                 <button type="submit">Submit</button>

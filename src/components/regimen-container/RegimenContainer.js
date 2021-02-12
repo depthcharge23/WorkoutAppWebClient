@@ -24,6 +24,7 @@ class RegimenContainer extends React.Component {
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
+        this.handleOnCreate = this.handleOnCreate.bind(this);
     }
 
     handleOnDelete (i) {
@@ -35,11 +36,23 @@ class RegimenContainer extends React.Component {
         });
     }
 
+    handleOnCreate (regimenName, restBetweenWorkout) {
+        const regimens = this.state.regimens.slice();
+        regimens.push({
+            "regimenName": regimenName,
+            "restBetweenWorkout": restBetweenWorkout
+        });
+
+        this.setState({
+            "regimens": regimens
+        });
+    }
+
     render () {
         return (
             <>
                 <RegimenList regimens={ this.state.regimens } handleOnDelete={ this.handleOnDelete } />
-                <Regimen />
+                <Regimen handleOnCreate={ this.handleOnCreate } />
                 <button>Create Regimen</button>
             </>
         );
