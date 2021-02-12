@@ -3,6 +3,7 @@ import './RegimenContainer.css';
 
 // Import Custom Components
 import RegimenList from "../regimen-list/RegimenList";
+import Regimen from "../regimen/Regimen";
 
 class RegimenContainer extends React.Component {
     constructor () {
@@ -37,8 +38,8 @@ class RegimenContainer extends React.Component {
     render () {
         return (
             <>
-                <h2>Regimen</h2>
                 <RegimenList regimens={ this.state.regimens } handleOnDelete={ this.handleOnDelete } />
+                <Regimen />
                 <button>Create Regimen</button>
             </>
         );
