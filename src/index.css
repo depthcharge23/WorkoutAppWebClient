@@ -36,3 +36,50 @@
 .item {
     margin: 10px;
 }
+
+.form-header {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 1.2em;
+    font-weight: bold;
+    
+}
+
+.input {
+    border: 3px solid black;
+    border-radius: 25px;
+    padding: 3px 10px;
+    margin: 5px 0px 15px 0px;
+}
+
+.back-btn {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 20px;
+    color: black;
+    padding: 5px 20px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;    
+}
+
+.submit-btn {
+    background-color: rgb(2, 172, 2);
+    border: 3px solid green;
+    border-radius: 20px;
+    color: white;
+    padding: 5px 20px;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    background-color: green;  
+}
