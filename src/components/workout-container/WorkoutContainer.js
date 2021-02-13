@@ -21,11 +21,13 @@ class WorkoutContainer extends React.Component {
                 {
                     "workoutName": "Lunges"
                 }
-            ]
+            ],
+            "selectedWorkout": null
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
         this.handleOnCreate = this.handleOnCreate.bind(this);
+        this.handleWorkoutSelect = this.handleWorkoutSelect.bind(this);
 
         this.showCreateWorkout = this.showCreateWorkout.bind(this);
         this.showWorkoutList = this.showWorkoutList.bind(this);
@@ -48,12 +50,21 @@ class WorkoutContainer extends React.Component {
         });
 
         this.setState({
+            "component": "workoutList",
             "workouts": workouts
+        });
+    }
+
+    handleWorkoutSelect (i) {
+        this.setState({
+            "selectedWorkout": this.state.workouts[i],
+            "component": "workout"
         });
     }
 
     showCreateWorkout () {
         this.setState({
+            "selectedWorkout": null,
             "component": "workout"
         });
     }
@@ -71,12 +82,14 @@ class WorkoutContainer extends React.Component {
             case "workoutList":
                 component = <WorkoutList
                     workouts={ this.state.workouts }
+                    handleWorkoutSelect={ this.handleWorkoutSelect }
                     handleOnDelete={ this.handleOnDelete }
                     showCreateWorkout={ this.showCreateWorkout }
                 />
                 break;
             case "workout":
-                component = <Workout 
+                component = <Workout
+                    workout={ this.state.selectedWorkout }
                     handleOnCreate={ this.handleOnCreate }
                     showWorkoutList={ this.showWorkoutList }
                 />

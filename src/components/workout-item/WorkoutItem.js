@@ -4,7 +4,7 @@ import './WorkoutItem.css';
 const WorkoutItem = (props) => {
     return (
         <>
-            { props.workout.workoutName }
+            <span onClick={ () => { props.onWorkoutSelect(props.index) } }>{ props.workout.workoutName }</span>
             <button onClick={ () => { props.onDelete(props.index) } }>X</button>
         </>
     );

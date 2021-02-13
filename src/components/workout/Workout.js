@@ -6,8 +6,8 @@ class Workout extends React.Component {
         super(props);
 
         this.state = {
-            "workoutName": "",
-            "workoutDescription": ""
+            "workoutName": this.props.workout && this.props.workout.workoutName ? this.props.workout.workoutName : "",
+            "workoutDescription": this.props.workout && this.props.workout.workoutDescription ? this.props.workout.workoutDescription : ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
