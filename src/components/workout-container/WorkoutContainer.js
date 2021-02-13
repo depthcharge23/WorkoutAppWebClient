@@ -3,6 +3,7 @@ import './WorkoutContainer.css';
 
 // Import Custom Components
 import WorkoutList from "../workout-list/WorkoutList";
+import Workout from "../workout/Workout";
 
 class WorkoutContainer extends React.Component {
     constructor () {
@@ -27,6 +28,7 @@ class WorkoutContainer extends React.Component {
         return (
             <>
                 <WorkoutList workouts={ this.state.workouts } />
+                <Workout />
             </>
         );
     }

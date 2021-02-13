@@ -5,7 +5,7 @@ class Workout extends React.Component {
     render () {
         return (
             <>
-                Workout
+                <h2>Workout</h2>
             </>
         );
     }
