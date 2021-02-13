@@ -6,8 +6,8 @@ import RegimenWorkoutItem from "../regimen-workout-item/RegimenWorkoutItem";
 
 const RegimenWorkoutList = (props) => {
     return (
-        <>
-            <h2>Regimen Workouts</h2>
+        <div className="list">
+            <h2 className="list-header">Regimen Workouts</h2>
             <ul>
                 {
                     props.regimenWorkouts.map((regimenWorkout, index) => (
@@ -23,7 +23,7 @@ const RegimenWorkoutList = (props) => {
                 }
             </ul>
             <button className="create-button" onClick={ props.showCreateRegimenWorkout }>Create Regimen Workout</button>
-        </>
+        </div>
     )
 }
 

@@ -3,7 +3,7 @@ import "./RegimenItem.css";
 
 const RegimenItem = (props) => {
     return (
-        <div className="regimen-item">
+        <div className="item">
             <span className="regimen-name" onClick={ () => { props.onRegimenSelect(props.index); } }>{ props.regimen.regimenName }</span>
             <button className="delete-button" onClick={ () => { props.onDelete(props.index); } }>X</button>
         </div>

@@ -24,3 +24,15 @@
     cursor: pointer;
     background-color: red;    
 }
+
+.list {
+    margin: 10px;
+}
+
+.list-header {
+    font-size: 2em;
+}
+
+.item {
+    margin: 10px;
+}

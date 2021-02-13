@@ -6,8 +6,8 @@ import WorkoutItem from "../workout-item/WorkoutItem";
 
 const WorkoutList = (props) => {
     return (
-        <>
-            <h2>Workouts</h2>
+        <div className="list">
+            <h2 className="list-header">Workouts</h2>
             <ul>
                 {
                     props.workouts.map((workout, index) => (
@@ -23,7 +23,7 @@ const WorkoutList = (props) => {
                 }
             </ul>
             <button className="create-button" onClick={ props.showCreateWorkout }>Create Workout</button>
-        </>
+        </div>
     );
 };
 

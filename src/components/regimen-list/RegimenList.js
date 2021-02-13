@@ -6,8 +6,8 @@ import RegimenItem from "../regimen-item/RegimenItem";
 
 const RegimenList = (props) => {
     return (
-        <div className="regimen-list">
-            <h2 className="regimen-list-header">Your Regimens</h2>
+        <div className="list">
+            <h2 className="list-header">Your Regimens</h2>
             <ul>
                 {
                     props.regimens.map((regimen, index) => (
