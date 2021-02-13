@@ -46,24 +46,34 @@ class Workout extends React.Component {
         return (
             <>
                 <form onSubmit={ this.handleSubmit }>
-                    <label htmlFor="workout-name">Workout Name</label>
-                    <input 
+                    <h2 className="form-header">Create Workout</h2>
+
+                    <label className="label" htmlFor="workout-name">
+                        Workout Name
+                    </label><br />
+
+                    <input
+                        className="input"
                         type="text"
                         name="workout-name"
                         value={ this.state.workoutName }
                         onChange={ this.handleOnWorkoutNameChange }
-                    />
+                    /><br />
 
-                    <label htmlFor="workout-description">Workout Description</label>
+                    <label className="label" htmlFor="workout-description">
+                        Workout Description
+                    </label><br />
+
                     <input
+                        className="input"
                         type="text"
                         name="workout-description"
                         value={ this.state.workoutDescription }
                         onChange={ this.handleOnWorkoutDescriptionChange }
-                    />
+                    /><br />
 
-                    <button onClick={ this.props.showWorkoutList }>Back</button>
-                    <button type="submit">Submit</button>
+                    <button className="back-button" onClick={ this.props.showWorkoutList }>Back</button>
+                    <button className="submit-button" type="submit">Submit</button>
                 </form>
             </>
         );
