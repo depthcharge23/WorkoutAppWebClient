@@ -22,7 +22,7 @@ const RegimenList = (props) => {
                     ))
                 }
             </ul>
-            <button className="create-regimen-button" onClick={ props.showCreateRegimen } >Create Regimen</button>
+            <button className="create-button" onClick={ props.showCreateRegimen } >Create Regimen</button>
         </div>
     );
 }

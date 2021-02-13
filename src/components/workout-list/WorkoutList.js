@@ -22,7 +22,7 @@ const WorkoutList = (props) => {
                     ))
                 }
             </ul>
-            <button onClick={ props.showCreateWorkout }>Create Workout</button>
+            <button className="create-button" onClick={ props.showCreateWorkout }>Create Workout</button>
         </>
     );
 };
