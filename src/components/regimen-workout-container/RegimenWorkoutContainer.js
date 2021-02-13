@@ -3,6 +3,7 @@ import "./RegimenWorkoutContainer.css";
 
 // Import Custom Components
 import RegimenWorkoutList from "../regimen-workout-list/RegimenWorkoutList";
+import RegimenWorkout from "../regimen-workout/RegimenWorkout";
 
 class RegimenWorkoutContainer extends React.Component {
     constructor () {
@@ -47,6 +48,7 @@ class RegimenWorkoutContainer extends React.Component {
                     regimenWorkouts={ this.state.regimenWorkouts }
                     handleOnDelete={ this.handleOnDelete }
                 />
+                <RegimenWorkout />
             </>
         );
     }
