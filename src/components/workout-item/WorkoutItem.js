@@ -1,10 +1,10 @@
 import React from "react";
 import './WorkoutItem.css';
 
-const WorkoutItem = () => {
+const WorkoutItem = (props) => {
     return (
         <>
-            Hello World
+            { props.workout.workoutName }
         </>
     );
 }

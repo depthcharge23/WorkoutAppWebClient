@@ -4,15 +4,18 @@ import "./WorkoutList.css";
 // Import Custom Components
 import WorkoutItem from "../workout-item/WorkoutItem";
 
-const WorkoutList = () => {
+const WorkoutList = (props) => {
     return (
         <>
             <h2>Workouts</h2>
             <ul>
-                <li>Push Ups</li>
-                <li>Squats</li>
-                <li>Lunges</li>
-                <li><WorkoutItem /></li>
+                {
+                    props.workouts.map((workout, index) => (
+                        <li key={ index }>
+                            <WorkoutItem workout={ workout } index={ index } />
+                        </li>
+                    ))
+                }
             </ul>
         </>
     );

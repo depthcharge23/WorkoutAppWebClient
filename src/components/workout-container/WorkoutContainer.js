@@ -5,10 +5,28 @@ import './WorkoutContainer.css';
 import WorkoutList from "../workout-list/WorkoutList";
 
 class WorkoutContainer extends React.Component {
+    constructor () {
+        super();
+
+        this.state = {
+            "workouts": [
+                {
+                    "workoutName": "Push Ups"
+                },
+                {
+                    "workoutName": "Squats"
+                },
+                {
+                    "workoutName": "Lunges"
+                }
+            ]
+        };
+    }
+
     render () {
         return (
             <>
-                <WorkoutList />
+                <WorkoutList workouts={ this.state.workouts } />
             </>
         );
     }
