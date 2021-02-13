@@ -7,7 +7,7 @@ import RegimenItem from "../regimen-item/RegimenItem";
 const RegimenList = (props) => {
     return (
         <>
-            <h2>Your Regimens</h2>
+            <h2 className="regimen-list-header">Your Regimens</h2>
             <ul>
                 {
                     props.regimens.map((regimen, index) => (
@@ -22,7 +22,7 @@ const RegimenList = (props) => {
                     ))
                 }
             </ul>
-            <button onClick={ props.showCreateRegimen } >Create Regimen</button>
+            <button className="create-regimen-button" onClick={ props.showCreateRegimen } >Create Regimen</button>
         </>
     );
 }

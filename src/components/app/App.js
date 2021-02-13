@@ -11,11 +11,8 @@ const App = () => {
   return (
     <>
       <Header className="row" />
-      <div className="row">
-        <RegimenContainer className="column" />
-        <WorkoutContainer className="column" />
-      </div>
-      
+      <RegimenContainer className="row" />
+      <WorkoutContainer className="row" />
       <RegimenWorkoutContainer className="row"/>
     </>
   );
