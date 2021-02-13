@@ -80,7 +80,7 @@ class RegimenWorkout extends React.Component {
                     onChange={ this.handleOnRepsChange }
                 />
 
-                <button>Back</button>
+                <button onClick={ this.props.showRegimenWorkoutList }>Back</button>
                 <button type="submit">Submit</button>
             </form>
         );

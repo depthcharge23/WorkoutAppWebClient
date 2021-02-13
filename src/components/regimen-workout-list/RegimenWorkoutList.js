@@ -22,6 +22,7 @@ const RegimenWorkoutList = (props) => {
                     ))
                 }
             </ul>
+            <button onClick={ props.showCreateRegimenWorkout }>Create Regimen Workout</button>
         </>
     )
 }

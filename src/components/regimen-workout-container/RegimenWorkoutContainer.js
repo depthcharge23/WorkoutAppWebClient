@@ -10,6 +10,7 @@ class RegimenWorkoutContainer extends React.Component {
         super();
 
         this.state = {
+            "component": "regimenWorkoutList",
             "regimenWorkouts": [
                 {
                     "workoutName": "Push Ups",
@@ -33,6 +34,9 @@ class RegimenWorkoutContainer extends React.Component {
         this.handleOnDelete = this.handleOnDelete.bind(this);
         this.handleOnCreate = this.handleOnCreate.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
+
+        this.showRegimenWorkoutList = this.showRegimenWorkoutList.bind(this);
+        this.showCreateRegimenWorkout = this.showCreateRegimenWorkout.bind(this);
     }
 
     handleOnDelete (i) {
@@ -59,22 +63,50 @@ class RegimenWorkoutContainer extends React.Component {
 
     handleOnSelect (i) {
         this.setState({
-            "selectedRegimenWorkout": this.state.regimenWorkouts[i]
+            "selectedRegimenWorkout": this.state.regimenWorkouts[i],
+            "component": "regimenWorkout"
+        });
+    }
+
+    showCreateRegimenWorkout () {
+        this.setState({
+            "selectedRegimenWorkout": null,
+            "component": "regimenWorkout"
+        });
+    }
+
+    showRegimenWorkoutList () {
+        this.setState({
+            "component": "regimenWorkoutList"
         });
     }
 
     render () {
-        return (
-            <>
-                <RegimenWorkoutList
+        let component = null;
+
+        switch (this.state.component) {
+            case "regimenWorkoutList":
+                component = <RegimenWorkoutList
                     regimenWorkouts={ this.state.regimenWorkouts }
                     handleOnDelete={ this.handleOnDelete }
                     handleOnSelect={ this.handleOnSelect }
-                />
-                <RegimenWorkout
+                    showCreateRegimenWorkout={ this.showCreateRegimenWorkout }
+                />;
+                break;
+            case "regimenWorkout":
+                component = <RegimenWorkout
                     regimenWorkout={ this.state.selectedRegimenWorkout }
                     handleOnCreate={ this.handleOnCreate }
-                />
+                    showRegimenWorkoutList={ this.showRegimenWorkoutList }
+                />;
+                break;
+            default:
+                break;
+        }
+
+        return (
+            <>
+                { component }
             </>
         );
     }
