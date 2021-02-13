@@ -1,10 +1,10 @@
 import React from "react";
 import "./RegimenWorkoutItem.css";
 
-const RegimenWorkoutItem = () => {
+const RegimenWorkoutItem = (props) => {
     return (
         <>
-            Hello world
+            { `${props.regimenWorkout.workoutName} Sets: ${props.regimenWorkout.sets} Reps: ${props.regimenWorkout.reps}` }
         </>
     );
 }

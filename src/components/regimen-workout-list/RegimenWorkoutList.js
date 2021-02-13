@@ -4,14 +4,21 @@ import "./RegimenWorkoutList.css";
 // Import Custom Components
 import RegimenWorkoutItem from "../regimen-workout-item/RegimenWorkoutItem";
 
-const RegimenWorkoutList = () => {
+const RegimenWorkoutList = (props) => {
     return (
         <>
+            <h2>Regimen Workouts</h2>
             <ul>
-                <li>Push Ups</li>
-                <li>Sit Ups</li>
-                <li>Crunches</li>
-                <li><RegimenWorkoutItem /></li>
+                {
+                    props.regimenWorkouts.map((regimenWorkout, index) => (
+                        <li key={index}>
+                            <RegimenWorkoutItem
+                                regimenWorkout={ regimenWorkout }
+                                index={ index }
+                            />
+                        </li>
+                    ))
+                }
             </ul>
         </>
     )
