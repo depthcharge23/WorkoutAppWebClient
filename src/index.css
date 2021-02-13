@@ -59,6 +59,7 @@ button:hover {
 
 .list-header {
     font-size: 2em;
+    font-weight: bold;
 }
 
 .item {
@@ -69,6 +70,7 @@ button:hover {
     padding: 5px 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 /* Form Styles */
