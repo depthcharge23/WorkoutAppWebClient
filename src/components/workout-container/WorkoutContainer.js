@@ -24,11 +24,24 @@ class WorkoutContainer extends React.Component {
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
+        this.handleOnCreate = this.handleOnCreate.bind(this);
     }
 
     handleOnDelete (i) {
         const workouts = this.state.workouts.slice();
         workouts.splice(i, 1);
+
+        this.setState({
+            "workouts": workouts
+        });
+    }
+
+    handleOnCreate (workoutName, workoutDescription) {
+        const workouts = this.state.workouts.slice();
+        workouts.push({
+            "workoutName": workoutName,
+            "workoutDescription": workoutDescription
+        });
 
         this.setState({
             "workouts": workouts
@@ -42,7 +55,9 @@ class WorkoutContainer extends React.Component {
                     workouts={ this.state.workouts }
                     handleOnDelete={ this.handleOnDelete }
                 />
-                <Workout />
+                <Workout 
+                    handleOnCreate={ this.handleOnCreate }
+                />
             </>
         );
     }

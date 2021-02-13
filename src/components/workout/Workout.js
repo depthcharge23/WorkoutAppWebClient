@@ -2,10 +2,22 @@ import React from "react";
 import "./Workout.css";
 
 class Workout extends React.Component {
+    constructor (props) {
+        super(props);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit (e) {
+        e.preventDefault();
+
+        this.props.handleOnCreate("asdf", "asdf");
+    }
+
     render () {
         return (
             <>
-                <form>
+                <form onSubmit={ this.handleSubmit }>
                     <label>Workout Name</label>
                     <input type="text" />
 
