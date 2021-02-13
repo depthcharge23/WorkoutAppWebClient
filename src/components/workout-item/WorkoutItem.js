@@ -5,7 +5,7 @@ const WorkoutItem = (props) => {
     return (
         <>
             { props.workout.workoutName }
-            <button>X</button>
+            <button onClick={ () => { props.onDelete(props.index) } }>X</button>
         </>
     );
 }

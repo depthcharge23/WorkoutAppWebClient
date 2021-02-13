@@ -12,7 +12,11 @@ const WorkoutList = (props) => {
                 {
                     props.workouts.map((workout, index) => (
                         <li key={ index }>
-                            <WorkoutItem workout={ workout } index={ index } />
+                            <WorkoutItem
+                                workout={ workout }
+                                index={ index }
+                                onDelete={ props.handleOnDelete }
+                            />
                         </li>
                     ))
                 }

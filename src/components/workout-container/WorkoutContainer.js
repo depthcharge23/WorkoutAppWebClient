@@ -22,12 +22,26 @@ class WorkoutContainer extends React.Component {
                 }
             ]
         };
+
+        this.handleOnDelete = this.handleOnDelete.bind(this);
+    }
+
+    handleOnDelete (i) {
+        const workouts = this.state.workouts.slice();
+        workouts.splice(i, 1);
+
+        this.setState({
+            "workouts": workouts
+        });
     }
 
     render () {
         return (
             <>
-                <WorkoutList workouts={ this.state.workouts } />
+                <WorkoutList
+                    workouts={ this.state.workouts }
+                    handleOnDelete={ this.handleOnDelete }
+                />
                 <Workout />
             </>
         );
