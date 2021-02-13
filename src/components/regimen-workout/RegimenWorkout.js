@@ -56,32 +56,46 @@ class RegimenWorkout extends React.Component {
     render () {
         return (
             <form onSubmit={ this.handleSubmit }>
-                <label htmlFor="workout-name">Workout Name</label>
+                <h2 className="form-header">Create Regimen Workout</h2>
+
+                <label className="label" htmlFor="workout-name">
+                    Workout Name
+                </label><br />
+
                 <input
+                    className="input"
                     type="text"
                     name="workout-name"
                     value={ this.state.workoutName }
                     onChange={ this.handleOnWorkoutNameChange }
-                />
+                /><br />
 
-                <label htmlFor="sets"># of Sets</label>
+                <label className="label" htmlFor="sets">
+                    # of Sets
+                </label><br />
+
                 <input
+                    className="input"
                     type="integer"
                     name="sets"
                     value={ this.state.sets }
                     onChange={ this.handleOnSetsChange }
-                />
+                /><br />
 
-                <label htmlFor="reps"># of Reps</label>
+                <label className="label" htmlFor="reps">
+                    # of Reps
+                </label><br />
+
                 <input
+                    className="input"
                     type="integer"
                     name="reps"
                     value={ this.state.reps }
                     onChange={ this.handleOnRepsChange }
-                />
+                /><br />
 
-                <button onClick={ this.props.showRegimenWorkoutList }>Back</button>
-                <button type="submit">Submit</button>
+                <button className="back-button" onClick={ this.props.showRegimenWorkoutList }>Back</button>
+                <button className="submit-button" type="submit">Submit</button>
             </form>
         );
     }

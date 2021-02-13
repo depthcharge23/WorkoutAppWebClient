@@ -55,7 +55,7 @@
     margin: 5px 0px 15px 0px;
 }
 
-.back-btn {
+.back-button {
     background-color: white;
     border: 3px solid black;
     border-radius: 20px;
@@ -64,13 +64,13 @@
     font-weight: bold;
 }
 
-.back-btn:hover {
+.back-button:hover {
     cursor: pointer;
     background-color: black;
     color: white;    
 }
 
-.submit-btn {
+.submit-button {
     background-color: rgb(2, 172, 2);
     border: 3px solid green;
     border-radius: 20px;
@@ -79,7 +79,7 @@
     font-weight: bold;
 }
 
-.submit-btn:hover {
+.submit-button:hover {
     cursor: pointer;
     background-color: green;  
 }

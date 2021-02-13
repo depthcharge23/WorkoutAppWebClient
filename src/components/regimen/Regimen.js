@@ -71,8 +71,8 @@ class Regimen extends React.Component {
                     onChange={ this.handleOnRestBetweenWorkoutChange }
                 /><br />
 
-                <button className="back-btn" onClick={ this.props.showRegimenList } >Back</button>
-                <button className="submit-btn" type="submit">Submit</button>
+                <button className="back-button" onClick={ this.props.showRegimenList } >Back</button>
+                <button className="submit-button" type="submit">Submit</button>
             </form>
         );
     }
