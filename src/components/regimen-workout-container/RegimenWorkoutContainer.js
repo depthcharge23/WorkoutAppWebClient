@@ -26,11 +26,13 @@ class RegimenWorkoutContainer extends React.Component {
                     "sets": 3,
                     "reps": 10
                 }
-            ]
+            ],
+            "selectedRegimenWorkout": null
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
         this.handleOnCreate = this.handleOnCreate.bind(this);
+        this.handleOnSelect = this.handleOnSelect.bind(this);
     }
 
     handleOnDelete (i) {
@@ -55,14 +57,22 @@ class RegimenWorkoutContainer extends React.Component {
         });
     }
 
+    handleOnSelect (i) {
+        this.setState({
+            "selectedRegimenWorkout": this.state.regimenWorkouts[i]
+        });
+    }
+
     render () {
         return (
             <>
                 <RegimenWorkoutList
                     regimenWorkouts={ this.state.regimenWorkouts }
                     handleOnDelete={ this.handleOnDelete }
+                    handleOnSelect={ this.handleOnSelect }
                 />
                 <RegimenWorkout
+                    regimenWorkout={ this.state.selectedRegimenWorkout }
                     handleOnCreate={ this.handleOnCreate }
                 />
             </>

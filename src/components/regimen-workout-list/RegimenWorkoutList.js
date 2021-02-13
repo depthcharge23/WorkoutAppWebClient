@@ -16,6 +16,7 @@ const RegimenWorkoutList = (props) => {
                                 regimenWorkout={ regimenWorkout }
                                 index={ index }
                                 onDelete={ props.handleOnDelete }
+                                onSelect={ props.handleOnSelect }
                             />
                         </li>
                     ))

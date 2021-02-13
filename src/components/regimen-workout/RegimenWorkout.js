@@ -6,9 +6,9 @@ class RegimenWorkout extends React.Component {
         super(props);
 
         this.state = {
-            "workoutName": "",
-            "sets": 0,
-            "reps": 0
+            "workoutName": this.props.regimenWorkout && this.props.regimenWorkout.workoutName ? this.props.regimenWorkout.workoutName : "",
+            "sets": this.props.regimenWorkout && this.props.regimenWorkout.sets ? this.props.regimenWorkout.sets : 0,
+            "reps": this.props.regimenWorkout && this.props.regimenWorkout.reps ? this.props.regimenWorkout.reps : 0
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
