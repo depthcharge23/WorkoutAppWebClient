@@ -1,6 +1,9 @@
 import React from "react";
 import "./WorkoutList.css";
 
+// Import Custom Components
+import WorkoutItem from "../workout-item/WorkoutItem";
+
 const WorkoutList = () => {
     return (
         <>
@@ -9,6 +12,7 @@ const WorkoutList = () => {
                 <li>Push Ups</li>
                 <li>Squats</li>
                 <li>Lunges</li>
+                <li><WorkoutItem /></li>
             </ul>
         </>
     );
