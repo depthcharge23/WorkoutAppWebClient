@@ -10,6 +10,7 @@ class WorkoutContainer extends React.Component {
         super();
 
         this.state = {
+            "component": "workoutList",
             "workouts": [
                 {
                     "workoutName": "Push Ups"
@@ -25,6 +26,9 @@ class WorkoutContainer extends React.Component {
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
         this.handleOnCreate = this.handleOnCreate.bind(this);
+
+        this.showCreateWorkout = this.showCreateWorkout.bind(this);
+        this.showWorkoutList = this.showWorkoutList.bind(this);
     }
 
     handleOnDelete (i) {
@@ -48,16 +52,42 @@ class WorkoutContainer extends React.Component {
         });
     }
 
+    showCreateWorkout () {
+        this.setState({
+            "component": "workout"
+        });
+    }
+
+    showWorkoutList () {
+        this.setState({
+            "component": "workoutList"
+        });
+    }
+
     render () {
-        return (
-            <>
-                <WorkoutList
+        let component = null;
+
+        switch (this.state.component) {
+            case "workoutList":
+                component = <WorkoutList
                     workouts={ this.state.workouts }
                     handleOnDelete={ this.handleOnDelete }
+                    showCreateWorkout={ this.showCreateWorkout }
                 />
-                <Workout 
+                break;
+            case "workout":
+                component = <Workout 
                     handleOnCreate={ this.handleOnCreate }
+                    showWorkoutList={ this.showWorkoutList }
                 />
+                break;
+            default:
+                break;
+        }
+
+        return (
+            <>
+                { component }                
             </>
         );
     }

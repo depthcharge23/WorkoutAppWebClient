@@ -62,7 +62,7 @@ class Workout extends React.Component {
                         onChange={ this.handleOnWorkoutDescriptionChange }
                     />
 
-                    <button>Back</button>
+                    <button onClick={ this.props.showWorkoutList }>Back</button>
                     <button type="submit">Submit</button>
                 </form>
             </>

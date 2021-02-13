@@ -21,7 +21,7 @@ const WorkoutList = (props) => {
                     ))
                 }
             </ul>
-            <button>Create Workout</button>
+            <button onClick={ props.showCreateWorkout }>Create Workout</button>
         </>
     );
 };
