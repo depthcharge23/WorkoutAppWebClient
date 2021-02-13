@@ -19,6 +19,11 @@ class Workout extends React.Component {
         e.preventDefault();
 
         this.props.handleOnCreate(this.state.workoutName, this.state.workoutDescription);
+
+        this.setState({
+            "workoutName": "",
+            "workoutDescription": ""
+        });
     }
 
     handleOnWorkoutNameChange (e) {
