@@ -17,6 +17,7 @@ const WorkoutList = (props) => {
                     ))
                 }
             </ul>
+            <button>Create Workout</button>
         </>
     );
 };
