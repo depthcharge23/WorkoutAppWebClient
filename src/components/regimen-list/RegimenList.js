@@ -1,5 +1,5 @@
 import React from "react";
-import './RegimenList.css';
+import "./RegimenList.css";
 
 // Import Custom Components
 import RegimenItem from "../regimen-item/RegimenItem";

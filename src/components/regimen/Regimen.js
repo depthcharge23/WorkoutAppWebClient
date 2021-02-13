@@ -1,5 +1,5 @@
 import React from "react";
-import './Regimen.css';
+import "./Regimen.css";
 
 class Regimen extends React.Component {
     constructor (props) {

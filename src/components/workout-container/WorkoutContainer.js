@@ -1,5 +1,5 @@
 import React from "react";
-import './WorkoutContainer.css';
+import "./WorkoutContainer.css";
 
 // Import Custom Components
 import WorkoutList from "../workout-list/WorkoutList";

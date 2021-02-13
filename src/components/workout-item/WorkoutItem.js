@@ -1,5 +1,5 @@
 import React from "react";
-import './WorkoutItem.css';
+import "./WorkoutItem.css";
 
 const WorkoutItem = (props) => {
     return (

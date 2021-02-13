@@ -1,5 +1,5 @@
 import React from "react";
-import './RegimenItem.css';
+import "./RegimenItem.css";
 
 const RegimenItem = (props) => {
     return (
