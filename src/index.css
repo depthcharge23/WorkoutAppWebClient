@@ -1,30 +1,58 @@
-.create-button {
-    background-color: rgb(30, 30, 30);
-    border: 3px solid black;
+/* Button Styles */
+button {
     border-radius: 20px;
-    color: white;
+    border-width: 3px;
+    border-style: solid;
     padding: 5px 20px;
     font-weight: bold;
 }
 
-.create-button:hover {
+button:hover {
     cursor: pointer;
+}
+
+.create-button {
+    background-color: rgb(30, 30, 30);
+    border-color: black;
+    color: white;
+}
+
+.create-button:hover {
     background-color: black;
 }
 
 .delete-button {
     background-color: rgb(255, 61, 61);
-    border: 3px solid red;
-    border-radius: 20px;
+    border-color: red;
     color: white;
-    padding: 2px 5px;
 }
 
 .delete-button:hover {
-    cursor: pointer;
     background-color: red;    
 }
 
+.back-button {
+    background-color: white;
+    border-color: black;
+    color: black;
+}
+
+.back-button:hover {
+    background-color: black;
+    color: white;    
+}
+
+.submit-button {
+    background-color: rgb(2, 172, 2);
+    border-color: green;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: green;  
+}
+
+/* List Styles */
 .list {
     margin: 10px;
 }
@@ -37,6 +65,7 @@
     margin: 10px;
 }
 
+/* Form Styles */
 .form-header {
     font-size: 2em;
     font-weight: bold;
@@ -53,33 +82,4 @@
     border-radius: 25px;
     padding: 3px 10px;
     margin: 5px 0px 15px 0px;
-}
-
-.back-button {
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 20px;
-    color: black;
-    padding: 5px 20px;
-    font-weight: bold;
-}
-
-.back-button:hover {
-    cursor: pointer;
-    background-color: black;
-    color: white;    
-}
-
-.submit-button {
-    background-color: rgb(2, 172, 2);
-    border: 3px solid green;
-    border-radius: 20px;
-    color: white;
-    padding: 5px 20px;
-    font-weight: bold;
-}
-
-.submit-button:hover {
-    cursor: pointer;
-    background-color: green;  
 }
