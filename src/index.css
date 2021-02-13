@@ -63,6 +63,12 @@ button:hover {
 
 .item {
     margin: 10px;
+    background-color: rgb(177, 177, 177);
+    border: 3px solid gray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Form Styles */
