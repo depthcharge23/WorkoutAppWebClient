@@ -27,14 +27,25 @@ class RegimenWorkoutContainer extends React.Component {
                 }
             ]
         };
+
+        this.handleOnDelete = this.handleOnDelete.bind(this);
     }
 
+    handleOnDelete (i) {
+        const regimenWorkouts = this.state.regimenWorkouts.slice();
+        regimenWorkouts.splice(i, 1);
+
+        this.setState({
+            "regimenWorkouts": regimenWorkouts
+        });
+    }
 
     render () {
         return (
             <>
                 <RegimenWorkoutList
                     regimenWorkouts={ this.state.regimenWorkouts }
+                    handleOnDelete={ this.handleOnDelete }
                 />
             </>
         );
