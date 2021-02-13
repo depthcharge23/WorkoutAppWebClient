@@ -1,0 +1,21 @@
+.regimen-item {
+    margin: 10px;
+}
+
+.regimen-name {
+    font-size: 1.5em;
+    padding-right: 10px;
+}
+
+.delete-regimen-item-button {
+    background-color: rgb(255, 61, 61);
+    border: 3px solid red;
+    border-radius: 20px;
+    color: white;
+    padding: 2px 5px;
+}
+
+.delete-regimen-item-button:hover {
+    cursor: pointer;
+    background-color: red;    
+}

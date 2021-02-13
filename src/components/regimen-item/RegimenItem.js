@@ -3,10 +3,10 @@ import "./RegimenItem.css";
 
 const RegimenItem = (props) => {
     return (
-        <>
-            <span onClick={ () => { props.onRegimenSelect(props.index); } }>{ props.regimen.regimenName }</span>
-            <button onClick={ () => { props.onDelete(props.index); } }>X</button>
-        </>
+        <div className="regimen-item">
+            <span className="regimen-name" onClick={ () => { props.onRegimenSelect(props.index); } }>{ props.regimen.regimenName }</span>
+            <button className="delete-regimen-item-button" onClick={ () => { props.onDelete(props.index); } }>X</button>
+        </div>
     );
 }
 
