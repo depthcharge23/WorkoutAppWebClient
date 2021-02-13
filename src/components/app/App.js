@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "../header/Header";
 import RegimenContainer from "../regimen-container/RegimenContainer";
 import WorkoutContainer from "../workout-container/WorkoutContainer";
+import RegimenWorkoutContainer from "../regimen-workout-container/RegimenWorkoutContainer";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Header />
       <RegimenContainer />
       <WorkoutContainer />
+      <RegimenWorkoutContainer />
     </>
   );
 }
