@@ -10,10 +10,13 @@ import RegimenWorkoutContainer from "../regimen-workout-container/RegimenWorkout
 const App = () => {
   return (
     <>
-      <Header />
-      <RegimenContainer />
-      <WorkoutContainer />
-      <RegimenWorkoutContainer />
+      <Header className="row" />
+      <div className="row">
+        <RegimenContainer className="column" />
+        <WorkoutContainer className="column" />
+      </div>
+      
+      <RegimenWorkoutContainer className="row"/>
     </>
   );
 }
