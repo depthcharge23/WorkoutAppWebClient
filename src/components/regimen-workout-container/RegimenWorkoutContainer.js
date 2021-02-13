@@ -30,11 +30,25 @@ class RegimenWorkoutContainer extends React.Component {
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
+        this.handleOnCreate = this.handleOnCreate.bind(this);
     }
 
     handleOnDelete (i) {
         const regimenWorkouts = this.state.regimenWorkouts.slice();
         regimenWorkouts.splice(i, 1);
+
+        this.setState({
+            "regimenWorkouts": regimenWorkouts
+        });
+    }
+
+    handleOnCreate (workoutName, sets, reps) {
+        const regimenWorkouts = this.state.regimenWorkouts.slice();
+        regimenWorkouts.push({
+            "workoutName": workoutName,
+            "sets": sets,
+            "reps": reps
+        });
 
         this.setState({
             "regimenWorkouts": regimenWorkouts
@@ -48,7 +62,9 @@ class RegimenWorkoutContainer extends React.Component {
                     regimenWorkouts={ this.state.regimenWorkouts }
                     handleOnDelete={ this.handleOnDelete }
                 />
-                <RegimenWorkout />
+                <RegimenWorkout
+                    handleOnCreate={ this.handleOnCreate }
+                />
             </>
         );
     }
