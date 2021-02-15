@@ -1,0 +1,7 @@
+h1, h2, .delete-button, .create-button, .back-button, .submit-button, .input {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.item, .label {
+    font-family: 'Courier New', Courier, monospace;
+}
