@@ -45,9 +45,9 @@ class Workout extends React.Component {
     render () {
         return (
             <>
-                <form onSubmit={ this.handleSubmit }>
-                    <h2 className="form-header">Create Workout</h2>
+                <h2 className="form-header">Create Workout</h2>
 
+                <form className="form" onSubmit={ this.handleSubmit }>
                     <label className="label" htmlFor="workout-name">
                         Workout Name
                     </label><br />

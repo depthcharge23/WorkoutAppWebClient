@@ -44,36 +44,38 @@ class Regimen extends React.Component {
 
     render () {
         return (
-            <form onSubmit={ this.handleSubmit }>
+            <>
                 <h2 className="form-header">Create Regimen</h2>
 
-                <label className="label" htmlFor="regimen-name">
-                    Regimen Name
-                </label><br />
+                <form className="form" onSubmit={ this.handleSubmit }>
+                    <label className="label" htmlFor="regimen-name">
+                        Regimen Name
+                    </label><br />
 
-                <input
-                    className="input"
-                    type="text"
-                    name="regimen-name"
-                    value={ this.state.regimenName }
-                    onChange={ this.handleOnRegimenNameChange }
-                /><br />
+                    <input
+                        className="input"
+                        type="text"
+                        name="regimen-name"
+                        value={ this.state.regimenName }
+                        onChange={ this.handleOnRegimenNameChange }
+                    /><br />
 
-                <label className="label" htmlFor="rest-between-workout">
-                    Rest Between Workout
-                </label><br />
+                    <label className="label" htmlFor="rest-between-workout">
+                        Rest Between Workout
+                    </label><br />
 
-                <input 
-                    className="input"
-                    type="integer"
-                    name="rest-between-workout"
-                    value={ this.state.restBetweenWorkout }
-                    onChange={ this.handleOnRestBetweenWorkoutChange }
-                /><br />
+                    <input 
+                        className="input"
+                        type="integer"
+                        name="rest-between-workout"
+                        value={ this.state.restBetweenWorkout }
+                        onChange={ this.handleOnRestBetweenWorkoutChange }
+                    /><br />
 
-                <button className="back-button" onClick={ this.props.showRegimenList } >Back</button>
-                <button className="submit-button" type="submit">Submit</button>
-            </form>
+                    <button className="back-button" onClick={ this.props.showRegimenList } >Back</button>
+                    <button className="submit-button" type="submit">Submit</button>
+                </form>
+            </>
         );
     }
 }

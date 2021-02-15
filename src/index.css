@@ -52,6 +52,10 @@ button:hover {
     background-color: green;  
 }
 
+.back-button, .submit-button {
+    margin: 0px 5px 0px 0px;
+}
+
 /* List Styles */
 .list {
     margin: 10px;
@@ -74,6 +78,10 @@ button:hover {
 }
 
 /* Form Styles */
+.form {
+    margin: 20px;
+}
+
 .form-header {
     font-size: 2em;
     font-weight: bold;

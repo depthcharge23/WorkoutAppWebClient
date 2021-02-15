@@ -55,48 +55,50 @@ class RegimenWorkout extends React.Component {
 
     render () {
         return (
-            <form onSubmit={ this.handleSubmit }>
+            <>
                 <h2 className="form-header">Create Regimen Workout</h2>
+                
+                <form className="form" onSubmit={ this.handleSubmit }>
+                    <label className="label" htmlFor="workout-name">
+                        Workout Name
+                    </label><br />
 
-                <label className="label" htmlFor="workout-name">
-                    Workout Name
-                </label><br />
+                    <input
+                        className="input"
+                        type="text"
+                        name="workout-name"
+                        value={ this.state.workoutName }
+                        onChange={ this.handleOnWorkoutNameChange }
+                    /><br />
 
-                <input
-                    className="input"
-                    type="text"
-                    name="workout-name"
-                    value={ this.state.workoutName }
-                    onChange={ this.handleOnWorkoutNameChange }
-                /><br />
+                    <label className="label" htmlFor="sets">
+                        # of Sets
+                    </label><br />
 
-                <label className="label" htmlFor="sets">
-                    # of Sets
-                </label><br />
+                    <input
+                        className="input"
+                        type="integer"
+                        name="sets"
+                        value={ this.state.sets }
+                        onChange={ this.handleOnSetsChange }
+                    /><br />
 
-                <input
-                    className="input"
-                    type="integer"
-                    name="sets"
-                    value={ this.state.sets }
-                    onChange={ this.handleOnSetsChange }
-                /><br />
+                    <label className="label" htmlFor="reps">
+                        # of Reps
+                    </label><br />
 
-                <label className="label" htmlFor="reps">
-                    # of Reps
-                </label><br />
+                    <input
+                        className="input"
+                        type="integer"
+                        name="reps"
+                        value={ this.state.reps }
+                        onChange={ this.handleOnRepsChange }
+                    /><br />
 
-                <input
-                    className="input"
-                    type="integer"
-                    name="reps"
-                    value={ this.state.reps }
-                    onChange={ this.handleOnRepsChange }
-                /><br />
-
-                <button className="back-button" onClick={ this.props.showRegimenWorkoutList }>Back</button>
-                <button className="submit-button" type="submit">Submit</button>
-            </form>
+                    <button className="back-button" onClick={ this.props.showRegimenWorkoutList }>Back</button>
+                    <button className="submit-button" type="submit">Submit</button>
+                </form>
+            </>
         );
     }
 }
