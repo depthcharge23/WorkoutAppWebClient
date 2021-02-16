@@ -42,8 +42,16 @@ class RegimenContainer extends React.Component {
         });
     }
 
-    handleOnDelete (i) {
+    async handleOnDelete (i) {
         const regimens = this.state.regimens.slice();
+        const regimen = regimens[i];
+
+        const response = await fetch(`${CONNECTION_STR}/regimen/${regimen["regimenId"]}`, {
+            "method": "DELETE"
+        });
+
+        const json = await response.json();
+        
         regimens.splice(i, 1);
 
         this.setState({
