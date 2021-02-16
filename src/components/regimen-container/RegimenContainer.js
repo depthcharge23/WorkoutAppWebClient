@@ -51,16 +51,29 @@ class RegimenContainer extends React.Component {
         });
     }
 
-    handleOnCreate (regimenName, restBetweenWorkout) {
-        const regimens = this.state.regimens.slice();
-        regimens.push({
-            "regimenName": regimenName,
-            "restBetweenWorkout": restBetweenWorkout
+    async handleOnCreate (regimenName, restBetweenWorkout) {
+        const response = await fetch(`${CONNECTION_STR}/regimen`, {
+            "method": "POST",
+            "body": JSON.stringify({
+                "regimenId": null,
+                "userId": 1,
+                "regimenName": regimenName,
+                "restBetweenWorkout": restBetweenWorkout
+            }),
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
         });
 
+        const json = await response.json();
+
+        const regimens = this.state.regimens.slice();
+        regimens.push(json);
+
         this.setState({
-            "component": "regimenList",
-            "regimens": regimens
+            "regimens": regimens,
+            "component": "regimenList"
         });
     }
 
