@@ -5,26 +5,21 @@ import "./RegimenContainer.css";
 import RegimenList from "../regimen-list/RegimenList";
 import Regimen from "../regimen/Regimen";
 
+const dotenv = require("dotenv");
+dotenv.config();
+
+const SERVER_DNS = process.env.SERVER_DNS || "localhost";
+const SERVER_PORT = process.env.SERVER_PORT || 3001;
+
+const CONNECTION_STR = `http://${SERVER_DNS}:${SERVER_PORT}`;
+
 class RegimenContainer extends React.Component {
     constructor () {
         super();
 
         this.state = {
             "component": "regimenList",
-            "regimens": [
-                {
-                    "regimenName": "Leg Day",
-                    "restBetweenWorkout": 1
-                },
-                {
-                    "regimenName": "CHEST!",
-                    "restBetweenWorkout": 2
-                },
-                {
-                    "regimenName": "Bis & Back",
-                    "restBetweenWorkout": 3
-                }
-            ],
+            "regimens": [],
             "selectedRegimen": null
         };
 
@@ -34,6 +29,17 @@ class RegimenContainer extends React.Component {
 
         this.showCreateRegimen = this.showCreateRegimen.bind(this);
         this.showRegimenList = this.showRegimenList.bind(this);
+    }
+
+    async componentDidMount () {
+        const response = await fetch(`${CONNECTION_STR}/regimen?u=1`, {
+            "method": "GET"
+        });
+        const json = await response.json();
+
+        this.setState({
+            "regimens": json
+        });
     }
 
     handleOnDelete (i) {
