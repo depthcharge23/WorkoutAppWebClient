@@ -7,7 +7,9 @@ class Regimen extends React.Component {
 
         this.state = {
             "regimenName": this.props.regimen && this.props.regimen.regimenName ? this.props.regimen.regimenName : "",
-            "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : 0
+            "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : 0,
+            "regimenNameError": "",
+            "restBetweenWorkoutError": ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,9 +38,17 @@ class Regimen extends React.Component {
 
     handleOnRestBetweenWorkoutChange (e) {
         const restBetweenWorkout = e.target.value;
+        let error = "";
+
+        if (!restBetweenWorkout) {
+            error = "Rest Between Workout cannot be empty.";
+        } else if (restBetweenWorkout && restBetweenWorkout < 0) {
+            error = "Rest Between Workout cannot be a negative number.";
+        }
 
         this.setState({
-            "restBetweenWorkout": restBetweenWorkout
+            "restBetweenWorkout": restBetweenWorkout,
+            "restBetweenWorkoutError": error
         });
     }
 
@@ -52,6 +62,8 @@ class Regimen extends React.Component {
                         Regimen Name
                     </label><br />
 
+                    <p className="error">{ this.state.regimenNameError }</p>
+
                     <input
                         className="input"
                         type="text"
@@ -63,6 +75,8 @@ class Regimen extends React.Component {
                     <label className="label" htmlFor="rest-between-workout">
                         Rest Between Workout
                     </label><br />
+
+                    <p className="error">{ this.state.restBetweenWorkoutError }</p>
 
                     <input 
                         className="input"
