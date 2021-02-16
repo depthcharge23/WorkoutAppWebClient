@@ -30,9 +30,17 @@ class Regimen extends React.Component {
 
     handleOnRegimenNameChange (e) {
         const regimenName = e.target.value;
+        let error = "";
+
+        if (!regimenName) {
+            error = "Regimen Name cannot be empty.";
+        } else if (regimenName && regimenName.length > 50) {
+            error = "Regimen Name length cannot be greater than 50.";
+        }
 
         this.setState({
-            "regimenName": regimenName
+            "regimenName": regimenName,
+            "regimenNameError": error
         });
     }
 
