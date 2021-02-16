@@ -15,11 +15,12 @@ class RegimenContainer extends React.Component {
         this.state = {
             "component": "regimenList",
             "regimens": [],
-            "selectedRegimen": null
+            "selectedRegimen": null,
+            "action": "create"
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
-        this.handleOnCreate = this.handleOnCreate.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
         this.handleRegimenSelect = this.handleRegimenSelect.bind(this);
 
         this.showCreateRegimen = this.showCreateRegimen.bind(this);
@@ -48,14 +49,26 @@ class RegimenContainer extends React.Component {
         });
     }
 
-    async handleOnCreate (regimenName, restBetweenWorkout) {
-        const createdRegimen = await RegimenModel.createRegimen(regimenName, restBetweenWorkout);        
-
+    async handleOnSubmit (regimenName, restBetweenWorkout) {
         const regimens = this.state.regimens.slice();
-        regimens.push(createdRegimen);
+        const selectedRegimen = this.state.selectedRegimen;
+
+        if (this.state.action === "create") {
+            const createdRegimen = await RegimenModel.createRegimen(regimenName, restBetweenWorkout);
+            regimens.push(createdRegimen);
+        } else {
+            selectedRegimen["regimenName"] = regimenName;
+            selectedRegimen["restBetweenWorkout"] = restBetweenWorkout;
+
+            const updatedReigmen = await RegimenModel.updateRegimenByRegimenId(selectedRegimen["regimenId"], selectedRegimen);
+            const index = regimens.indexOf(selectedRegimen);
+    
+            regimens[index] = updatedReigmen;
+        }
 
         this.setState({
             "regimens": regimens,
+            "selectedRegimen": selectedRegimen,
             "component": "regimenList"
         });
     }
@@ -63,14 +76,16 @@ class RegimenContainer extends React.Component {
     handleRegimenSelect (i) {
         this.setState({
             "selectedRegimen": this.state.regimens[i],
-            "component": "regimen"
+            "component": "regimen",
+            "action": "update"
         });
     }
 
     showCreateRegimen () {
         this.setState({
             "selectedRegimen": null,
-            "component": "regimen"
+            "component": "regimen",
+            "action": "create"
         });
     }
 
@@ -95,7 +110,7 @@ class RegimenContainer extends React.Component {
             case "regimen":
                 component = <Regimen
                     regimen={ this.state.selectedRegimen }
-                    handleOnCreate={ this.handleOnCreate }
+                    handleOnSubmit={ this.handleOnSubmit }
                     showRegimenList={ this.showRegimenList }
                 />;
                 break;

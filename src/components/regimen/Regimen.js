@@ -18,7 +18,7 @@ class Regimen extends React.Component {
     handleSubmit (e) {
         e.preventDefault();
         
-        this.props.handleOnCreate(this.state.regimenName, this.state.restBetweenWorkout);
+        this.props.handleOnSubmit(this.state.regimenName, this.state.restBetweenWorkout);
 
         this.setState({
             "regimenName": "",
