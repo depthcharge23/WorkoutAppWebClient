@@ -99,3 +99,14 @@ button:hover {
     padding: 3px 10px;
     margin: 5px 0px 15px 0px;
 }
+
+/* Error Styles */
+.error {
+    color: red;
+    font-size: 11px;
+}
+
+.error-input {
+    color: red;
+    border-color: red;
+}

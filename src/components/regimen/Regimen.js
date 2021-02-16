@@ -38,6 +38,12 @@ class Regimen extends React.Component {
             error = "Regimen Name length cannot be greater than 50.";
         }
 
+        if (error) {
+            e.target.classList.add("error-input");
+        } else {
+            e.target.classList.remove("error-input");
+        }
+
         this.setState({
             "regimenName": regimenName,
             "regimenNameError": error
@@ -50,8 +56,16 @@ class Regimen extends React.Component {
 
         if (!restBetweenWorkout) {
             error = "Rest Between Workout cannot be empty.";
+        } else if (restBetweenWorkout && isNaN(Number(restBetweenWorkout))) {
+            error = "Rest Between Workout has to be a number.";
         } else if (restBetweenWorkout && restBetweenWorkout < 0) {
             error = "Rest Between Workout cannot be a negative number.";
+        }
+
+        if (error) {
+            e.target.classList.add("error-input");
+        } else {
+            e.target.classList.remove("error-input");
         }
 
         this.setState({

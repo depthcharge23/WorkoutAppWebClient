@@ -1,4 +1,4 @@
-h1, h2, .delete-button, .create-button, .back-button, .submit-button, .input {
+h1, h2, .delete-button, .create-button, .back-button, .submit-button, .input, .error {
     font-family: Arial, Helvetica, sans-serif;
 }
 
