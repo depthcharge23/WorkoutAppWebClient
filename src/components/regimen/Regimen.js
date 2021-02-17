@@ -1,13 +1,16 @@
 import React from "react";
 import "./Regimen.css";
 
+// Import Models
+import RegimenModel from "../../model/regimen/RegimenModel";
+
 class Regimen extends React.Component {
     constructor (props) {
         super(props);
 
         this.state = {
             "regimenName": this.props.regimen && this.props.regimen.regimenName ? this.props.regimen.regimenName : "",
-            "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : 0,
+            "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : "",
             "regimenNameError": "",
             "restBetweenWorkoutError": ""
         };
@@ -19,24 +22,47 @@ class Regimen extends React.Component {
 
     handleSubmit (e) {
         e.preventDefault();
-        
-        this.props.handleOnSubmit(this.state.regimenName, this.state.restBetweenWorkout);
 
-        this.setState({
-            "regimenName": "",
-            "restBetweenWorkout": 0
-        });
+        let error = RegimenModel.validateRegimenName(this.state.regimenName);
+        let hasError = false;
+
+        if (error) {
+            const element = document.querySelector(`input[name="regimen-name"]`);
+            element.classList.add("error-input");
+
+            hasError = true;
+
+            this.setState({
+                "regimenNameError": error
+            });
+        }
+        
+        error = RegimenModel.validateRestBetweenWorkout(this.state.restBetweenWorkout);
+
+        if (error) {
+            const element = document.querySelector(`input[name="rest-between-workout"]`);
+            element.classList.add("error-input");
+
+            hasError = true;
+
+            this.setState({
+                "restBetweenWorkoutError": error
+            });
+        }
+        
+        if (!hasError) {
+            this.props.handleOnSubmit(this.state.regimenName, this.state.restBetweenWorkout);
+
+            this.setState({
+                "regimenName": "",
+                "restBetweenWorkout": 0
+            });
+        }
     }
 
     handleOnRegimenNameChange (e) {
         const regimenName = e.target.value;
-        let error = "";
-
-        if (!regimenName) {
-            error = "Regimen Name cannot be empty.";
-        } else if (regimenName && regimenName.length > 50) {
-            error = "Regimen Name length cannot be greater than 50.";
-        }
+        let error = RegimenModel.validateRegimenName(regimenName);
 
         if (error) {
             e.target.classList.add("error-input");
@@ -52,15 +78,7 @@ class Regimen extends React.Component {
 
     handleOnRestBetweenWorkoutChange (e) {
         const restBetweenWorkout = e.target.value;
-        let error = "";
-
-        if (!restBetweenWorkout) {
-            error = "Rest Between Workout cannot be empty.";
-        } else if (restBetweenWorkout && isNaN(Number(restBetweenWorkout))) {
-            error = "Rest Between Workout has to be a number.";
-        } else if (restBetweenWorkout && restBetweenWorkout < 0) {
-            error = "Rest Between Workout cannot be a negative number.";
-        }
+        let error = RegimenModel.validateRestBetweenWorkout(restBetweenWorkout);
 
         if (error) {
             e.target.classList.add("error-input");

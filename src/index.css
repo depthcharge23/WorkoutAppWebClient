@@ -104,6 +104,7 @@ button:hover {
 .error {
     color: red;
     font-size: 11px;
+    margin: 3px;
 }
 
 .error-input {

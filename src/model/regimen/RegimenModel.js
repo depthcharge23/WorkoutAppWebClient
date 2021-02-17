@@ -61,6 +61,28 @@ class RegimenModel {
 
         return json;
     }
+
+    static validateRegimenName (regimenName) {
+        if (!regimenName) {
+            return "Regimen Name cannot be empty.";
+        } else if (regimenName && regimenName.length > 50) {
+            return "Regimen Name length cannot be greater than 50.";
+        }
+
+        return "";
+    }
+
+    static validateRestBetweenWorkout (restBetweenWorkout) {
+        if (!restBetweenWorkout && restBetweenWorkout !== 0) {
+            return "Rest Between Workout cannot be empty.";
+        } else if (restBetweenWorkout && isNaN(Number(restBetweenWorkout))) {
+            return "Rest Between Workout has to be a number.";
+        } else if (restBetweenWorkout && restBetweenWorkout < 0) {
+            return "Rest Between Workout cannot be a negative number.";
+        }
+
+        return "";
+    }
 }
 
 export default RegimenModel;
