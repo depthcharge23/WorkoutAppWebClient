@@ -95,7 +95,7 @@ class Regimen extends React.Component {
     render () {
         return (
             <>
-                <h2 className="form-header">Create Regimen</h2>
+                <h2 className="form-header">{ this.props.headerName }</h2>
 
                 <form className="form" onSubmit={ this.handleSubmit }>
                     <label className="label" htmlFor="regimen-name">

@@ -110,6 +110,7 @@ class RegimenContainer extends React.Component {
             case "regimen":
                 component = <Regimen
                     regimen={ this.state.selectedRegimen }
+                    headerName={ this.state.selectedRegimen && this.state.selectedRegimen.regimenName ? this.state.selectedRegimen.regimenName : "Create Regimen" }
                     handleOnSubmit={ this.handleOnSubmit }
                     showRegimenList={ this.showRegimenList }
                 />;
