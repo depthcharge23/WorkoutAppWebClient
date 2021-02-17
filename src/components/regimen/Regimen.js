@@ -1,6 +1,9 @@
 import React from "react";
 import "./Regimen.css";
 
+// Import Custom Components
+import RegimenWorkoutContainer from "../regimen-workout-container/RegimenWorkoutContainer";
+
 // Import Models
 import RegimenModel from "../../model/regimen/RegimenModel";
 
@@ -125,6 +128,8 @@ class Regimen extends React.Component {
                         value={ this.state.restBetweenWorkout }
                         onChange={ this.handleOnRestBetweenWorkoutChange }
                     /><br />
+
+                    <RegimenWorkoutContainer />
 
                     <button className="back-button" onClick={ this.props.showRegimenList } >Back</button>
                     <button className="submit-button" type="submit">Submit</button>
