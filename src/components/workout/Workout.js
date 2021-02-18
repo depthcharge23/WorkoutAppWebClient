@@ -11,7 +11,8 @@ class Workout extends React.Component {
         this.state = {
             "workoutName": this.props.workout && this.props.workout.workoutName ? this.props.workout.workoutName : "",
             "workoutDescription": this.props.workout && this.props.workout.workoutDescription ? this.props.workout.workoutDescription : "",
-            "workoutNameError": ""
+            "workoutNameError": "",
+            "workoutDescriptionError": ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,9 +49,17 @@ class Workout extends React.Component {
 
     handleOnWorkoutDescriptionChange (e) {
         const workoutDescription = e.target.value;
+        let error = WorkoutModel.validateWorkoutDescription(workoutDescription);
+
+        if (error) {
+            e.target.classList.add("error-input");
+        } else {
+            e.target.classList.remove("error-input");
+        }
 
         this.setState({
-            "workoutDescription": workoutDescription
+            "workoutDescription": workoutDescription,
+            "workoutDescriptionError": error
         });
     }
 
@@ -77,6 +86,8 @@ class Workout extends React.Component {
                     <label className="label" htmlFor="workout-description">
                         Workout Description
                     </label><br />
+
+                    <p className="error">{ this.state.workoutDescriptionError }</p>
 
                     <input
                         className="input"
