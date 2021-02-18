@@ -5,29 +5,16 @@ import "./RegimenWorkoutContainer.css";
 import RegimenWorkoutList from "../regimen-workout-list/RegimenWorkoutList";
 import RegimenWorkout from "../regimen-workout/RegimenWorkout";
 
+// Import Models
+import RegimenWorkoutModel from "../../model/regimen-workout/RegimenWorkoutModel";
+
 class RegimenWorkoutContainer extends React.Component {
     constructor () {
         super();
 
         this.state = {
             "component": "regimenWorkoutList",
-            "regimenWorkouts": [
-                {
-                    "workoutName": "Push Ups",
-                    "sets": 3,
-                    "reps": 10
-                },
-                {
-                    "workoutName": "Sit Ups",
-                    "sets": 3,
-                    "reps": 10
-                },
-                {
-                    "workoutName": "Crunches",
-                    "sets": 3,
-                    "reps": 10
-                }
-            ],
+            "regimenWorkouts": [],
             "selectedRegimenWorkout": null
         };
 
@@ -37,6 +24,14 @@ class RegimenWorkoutContainer extends React.Component {
 
         this.showRegimenWorkoutList = this.showRegimenWorkoutList.bind(this);
         this.showCreateRegimenWorkout = this.showCreateRegimenWorkout.bind(this);
+    }
+
+    async componentDidMount () {
+        const regimenWorkouts = await RegimenWorkoutModel.findRegimenWorkoutsByRegimenId(1);
+
+        this.setState({
+            "regimenWorkouts": regimenWorkouts
+        });
     }
 
     handleOnDelete (i) {
