@@ -34,8 +34,12 @@ class RegimenWorkoutContainer extends React.Component {
         });
     }
 
-    handleOnDelete (i) {
+    async handleOnDelete (i) {
         const regimenWorkouts = this.state.regimenWorkouts.slice();
+        const regimenWorkout = regimenWorkouts[i];
+
+        const deletedRegimenWorkout = await RegimenWorkoutModel.deleteRegimenWorkoutByRegimenWorkoutId(regimenWorkout["regimenWorkoutId"]);
+
         regimenWorkouts.splice(i, 1);
 
         this.setState({
