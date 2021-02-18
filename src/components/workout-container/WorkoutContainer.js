@@ -15,11 +15,12 @@ class WorkoutContainer extends React.Component {
         this.state = {
             "component": "workoutList",
             "workouts": [],
-            "selectedWorkout": null
+            "selectedWorkout": null,
+            "action": "create"
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
-        this.handleOnCreate = this.handleOnCreate.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
         this.handleWorkoutSelect = this.handleWorkoutSelect.bind(this);
 
         this.showCreateWorkout = this.showCreateWorkout.bind(this);
@@ -47,30 +48,43 @@ class WorkoutContainer extends React.Component {
         });
     }
 
-    handleOnCreate (workoutName, workoutDescription) {
+    async handleOnSubmit (workoutName, workoutDescription) {
         const workouts = this.state.workouts.slice();
-        workouts.push({
-            "workoutName": workoutName,
-            "workoutDescription": workoutDescription
-        });
+        const selectedWorkout = this.state.selectedWorkout;
+
+        if (this.state.action === "create") {
+            const createdWorkout = await WorkoutModel.createWorkout(workoutName, workoutDescription);
+            workouts.push(createdWorkout);
+        } else {
+            selectedWorkout["workoutName"] = workoutName;
+            selectedWorkout["workoutDescription"] = workoutDescription;
+
+            const updatedWorkout = await WorkoutModel.updateWorkoutByWorkoutId(selectedWorkout["workoutId"], selectedWorkout);
+            const index = workouts.indexOf(selectedWorkout);
+
+            workouts[index] = updatedWorkout;
+        }
 
         this.setState({
-            "component": "workoutList",
-            "workouts": workouts
+            "workouts": workouts,
+            "selectedWorkout": selectedWorkout,
+            "component": "workoutList"
         });
     }
 
     handleWorkoutSelect (i) {
         this.setState({
             "selectedWorkout": this.state.workouts[i],
-            "component": "workout"
+            "component": "workout",
+            "action": "update"
         });
     }
 
     showCreateWorkout () {
         this.setState({
             "selectedWorkout": null,
-            "component": "workout"
+            "component": "workout",
+            "action": "create"
         });
     }
 
@@ -95,7 +109,7 @@ class WorkoutContainer extends React.Component {
             case "workout":
                 component = <Workout
                     workout={ this.state.selectedWorkout }
-                    handleOnCreate={ this.handleOnCreate }
+                    handleOnCreate={ this.handleOnSubmit }
                     showWorkoutList={ this.showWorkoutList }
                 />
                 break;

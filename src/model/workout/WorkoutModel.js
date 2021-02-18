@@ -12,8 +12,8 @@ class WorkoutModel {
             "method": "POST",
             "body": JSON.stringify({
                 "workoutId": null,
-                "regimenName": workoutName,
-                "restBetweenWorkout": workoutDescription
+                "workoutName": workoutName,
+                "workoutDescription": workoutDescription
             }),
             "headers": {
                 "Accept": "application/json",
