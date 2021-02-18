@@ -20,15 +20,44 @@ class Workout extends React.Component {
         this.handleOnWorkoutDescriptionChange = this.handleOnWorkoutDescriptionChange.bind(this);
     }
 
-    handleSubmit (e) {
+    async handleSubmit (e) {
         e.preventDefault();
 
-        this.props.handleOnCreate(this.state.workoutName, this.state.workoutDescription);
+        let error = await WorkoutModel.validateWorkoutName(this.state.workoutName);
+        let hasError = false;
 
-        this.setState({
-            "workoutName": "",
-            "workoutDescription": ""
-        });
+        if (error) {
+            const element = document.querySelector(`input[name="workout-name"]`);
+            element.classList.add("error-input");
+
+            hasError = true;
+
+            this.setState({
+                "workoutNameError": error
+            });
+        }
+
+        error = WorkoutModel.validateWorkoutDescription(this.state.workoutDescription);
+
+        if (error) {
+            const element = document.querySelector(`input[name="workout-description"]`);
+            element.classList.add("error-input");
+
+            hasError = true;
+
+            this.setState({
+                "workoutDescriptionError": error
+            });
+        }
+
+        if (!hasError) {
+            this.props.handleOnCreate(this.state.workoutName, this.state.workoutDescription);
+
+            this.setState({
+                "workoutName": "",
+                "workoutDescription": ""
+            });
+        }
     }
 
     async handleOnWorkoutNameChange (e) {
@@ -66,7 +95,7 @@ class Workout extends React.Component {
     render () {
         return (
             <>
-                <h2 className="form-header">Create Workout</h2>
+                <h2 className="form-header">{ this.props.headerName }</h2>
 
                 <form className="form" onSubmit={ this.handleSubmit }>
                     <label className="label" htmlFor="workout-name">

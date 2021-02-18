@@ -109,6 +109,7 @@ class WorkoutContainer extends React.Component {
             case "workout":
                 component = <Workout
                     workout={ this.state.selectedWorkout }
+                    headerName={ this.state.selectedWorkout && this.state.selectedWorkout.workoutName ? this.state.selectedWorkout.workoutName : "Create Workout" }
                     handleOnCreate={ this.handleOnSubmit }
                     showWorkoutList={ this.showWorkoutList }
                 />
