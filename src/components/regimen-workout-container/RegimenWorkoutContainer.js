@@ -7,6 +7,7 @@ import RegimenWorkout from "../regimen-workout/RegimenWorkout";
 
 // Import Models
 import RegimenWorkoutModel from "../../model/regimen-workout/RegimenWorkoutModel";
+import RegimenList from "../regimen-list/RegimenList";
 
 class RegimenWorkoutContainer extends React.Component {
     constructor () {
@@ -15,11 +16,12 @@ class RegimenWorkoutContainer extends React.Component {
         this.state = {
             "component": "regimenWorkoutList",
             "regimenWorkouts": [],
-            "selectedRegimenWorkout": null
+            "selectedRegimenWorkout": null,
+            "action": "create"
         };
 
         this.handleOnDelete = this.handleOnDelete.bind(this);
-        this.handleOnCreate = this.handleOnCreate.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
 
         this.showRegimenWorkoutList = this.showRegimenWorkoutList.bind(this);
@@ -47,30 +49,44 @@ class RegimenWorkoutContainer extends React.Component {
         });
     }
 
-    handleOnCreate (workoutName, sets, reps) {
+    async handleOnSubmit (workoutId, reps, sets) {
         const regimenWorkouts = this.state.regimenWorkouts.slice();
-        regimenWorkouts.push({
-            "workoutName": workoutName,
-            "sets": sets,
-            "reps": reps
-        });
+        const selectedRegimenWorkout = this.state.selectedRegimenWorkout;
+
+        if (this.state.action === "create") {
+            const createdRegimenWorkout = await RegimenWorkoutModel.createRegimenWorkout(1, 1, reps, sets);
+            regimenWorkouts.push(createdRegimenWorkout);
+        } else {
+            selectedRegimenWorkout["workoutId"] = workoutId;
+            selectedRegimenWorkout["reps"] = reps;
+            selectedRegimenWorkout["sets"] = sets;
+
+            const updatedRegimenWorkout = await RegimenWorkoutModel.updateRegimenWorkoutByRegimenWorkoutId(selectedRegimenWorkout["regimenWorkoutId"], selectedRegimenWorkout);
+            const index = regimenWorkouts.indexOf(selectedRegimenWorkout);
+
+            regimenWorkouts[index] = updatedRegimenWorkout;
+        }
 
         this.setState({
-            "regimenWorkouts": regimenWorkouts
+            "regimenWorkouts": regimenWorkouts,
+            "selectedRegimenWorkout": selectedRegimenWorkout,
+            "component": "regimenWorkoutList"
         });
     }
 
     handleOnSelect (i) {
         this.setState({
             "selectedRegimenWorkout": this.state.regimenWorkouts[i],
-            "component": "regimenWorkout"
+            "component": "regimenWorkout",
+            "action": "update"
         });
     }
 
     showCreateRegimenWorkout () {
         this.setState({
             "selectedRegimenWorkout": null,
-            "component": "regimenWorkout"
+            "component": "regimenWorkout",
+            "action": "create"
         });
     }
 
@@ -95,7 +111,7 @@ class RegimenWorkoutContainer extends React.Component {
             case "regimenWorkout":
                 component = <RegimenWorkout
                     regimenWorkout={ this.state.selectedRegimenWorkout }
-                    handleOnCreate={ this.handleOnCreate }
+                    handleOnSubmit={ this.handleOnSubmit }
                     showRegimenWorkoutList={ this.showRegimenWorkoutList }
                 />;
                 break;

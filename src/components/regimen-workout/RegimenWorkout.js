@@ -20,7 +20,7 @@ class RegimenWorkout extends React.Component {
     handleSubmit (e) {
         e.preventDefault();
 
-        this.props.handleOnCreate(this.state.workoutName, this.state.sets, this.state.reps);
+        this.props.handleOnSubmit(1, this.state.reps, this.state.sets);
 
         this.setState({
             "workoutName": "",
