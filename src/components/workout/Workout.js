@@ -1,13 +1,17 @@
 import React from "react";
 import "./Workout.css";
 
+// Import Models
+import WorkoutModel from "../../model/workout/WorkoutModel";
+
 class Workout extends React.Component {
     constructor (props) {
         super(props);
 
         this.state = {
             "workoutName": this.props.workout && this.props.workout.workoutName ? this.props.workout.workoutName : "",
-            "workoutDescription": this.props.workout && this.props.workout.workoutDescription ? this.props.workout.workoutDescription : ""
+            "workoutDescription": this.props.workout && this.props.workout.workoutDescription ? this.props.workout.workoutDescription : "",
+            "workoutNameError": ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,11 +30,19 @@ class Workout extends React.Component {
         });
     }
 
-    handleOnWorkoutNameChange (e) {
+    async handleOnWorkoutNameChange (e) {
         const workoutName = e.target.value;
+        let error = await WorkoutModel.validateWorkoutName(workoutName);
+
+        if (error) {
+            e.target.classList.add("error-input");
+        } else {
+            e.target.classList.remove("error-input");
+        }
 
         this.setState({
-            "workoutName": workoutName
+            "workoutName": workoutName,
+            "workoutNameError": error
         });
     }
 
@@ -51,6 +63,8 @@ class Workout extends React.Component {
                     <label className="label" htmlFor="workout-name">
                         Workout Name
                     </label><br />
+
+                    <p className="error">{ this.state.workoutNameError }</p>
 
                     <input
                         className="input"
