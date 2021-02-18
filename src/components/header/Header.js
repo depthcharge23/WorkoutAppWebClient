@@ -2,6 +2,12 @@ import React from "react";
 import "./Header.css";
 
 const Header = (props) => {
+    const handleOnClick = e => {
+        const navItem = e.target.innerText;
+
+        props.handleOnNavItemClick(navItem);
+    };
+
     return (
         <div className="header row">
             <h1 className="column">The Workout App</h1>
@@ -12,6 +18,7 @@ const Header = (props) => {
                             <li
                                 className="nav-item column"
                                 key={ index }
+                                onClick={ handleOnClick }
                             >
                                 { navItem }
                             </li>

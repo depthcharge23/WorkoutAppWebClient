@@ -14,16 +14,37 @@ class App extends React.Component {
       "navItems": [ "Your Regimens", "Workouts"],
       "selectedNavItem": "Your Regimens"
     };
+
+    this.handleOnNavItemClick = this.handleOnNavItemClick.bind(this);
+  }
+
+  handleOnNavItemClick (navItem) {
+    this.setState({
+      "selectedNavItem": navItem
+    });
   }
   
   render () {
+    let component = null;
+
+    switch (this.state.selectedNavItem) {
+      case "Your Regimens":
+        component = <RegimenContainer className="row" />;
+        break;
+      case "Workouts":
+        component = <WorkoutContainer className="row" />;
+        break;
+      default:
+        break;
+    }
+
+
     return (
       <>
-        <Header className="row" navItems={ this.state.navItems } />
+        <Header className="row" navItems={ this.state.navItems } handleOnNavItemClick={ this.handleOnNavItemClick } />
         <div className="row app">
           <div className="column">
-            <RegimenContainer className="row" />
-            <WorkoutContainer className="row" />
+            { component }            
           </div>
         </div>
       </>
