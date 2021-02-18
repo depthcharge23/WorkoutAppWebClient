@@ -5,4 +5,20 @@
     color: white;
     margin-bottom: 20px;
     font-weight: bold;
+    align-items: center;
+}
+
+.nav-item {
+    align-items: center;
+    font-size: 0.8em;
+}
+
+.sign-out {
+    align-items: end;
+    font-size: 0.6em;
+}
+
+.nav-item:hover, .sign-out:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
