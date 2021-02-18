@@ -5,23 +5,16 @@ import "./WorkoutContainer.css";
 import WorkoutList from "../workout-list/WorkoutList";
 import Workout from "../workout/Workout";
 
+// Import Models
+import WorkoutModel from "../../model/workout/WorkoutModel";
+
 class WorkoutContainer extends React.Component {
     constructor () {
         super();
 
         this.state = {
             "component": "workoutList",
-            "workouts": [
-                {
-                    "workoutName": "Push Ups"
-                },
-                {
-                    "workoutName": "Squats"
-                },
-                {
-                    "workoutName": "Lunges"
-                }
-            ],
+            "workouts": [],
             "selectedWorkout": null
         };
 
@@ -31,6 +24,14 @@ class WorkoutContainer extends React.Component {
 
         this.showCreateWorkout = this.showCreateWorkout.bind(this);
         this.showWorkoutList = this.showWorkoutList.bind(this);
+    }
+
+    async componentDidMount () {
+        const workouts = await WorkoutModel.findAllWorkouts();
+
+        this.setState({
+            "workouts": workouts
+        });
     }
 
     handleOnDelete (i) {
