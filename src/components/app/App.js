@@ -6,18 +6,29 @@ import Header from "../header/Header";
 import RegimenContainer from "../regimen-container/RegimenContainer";
 import WorkoutContainer from "../workout-container/WorkoutContainer";
 
-const App = () => {
-  return (
-    <>
-      <Header className="row" />
-      <div className="row app">
-        <div className="column">
-          <RegimenContainer className="row" />
-          <WorkoutContainer className="row" />
+class App extends React.Component {
+  constructor () {
+    super();
+
+    this.state = {
+      "navItems": [ "Your Regimens", "Workouts"],
+      "selectedNavItem": "Your Regimens"
+    };
+  }
+  
+  render () {
+    return (
+      <>
+        <Header className="row" navItems={ this.state.navItems } />
+        <div className="row app">
+          <div className="column">
+            <RegimenContainer className="row" />
+            <WorkoutContainer className="row" />
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default App;
