@@ -118,13 +118,14 @@ class Workout extends React.Component {
 
                     <p className="error">{ this.state.workoutDescriptionError }</p>
 
-                    <input
-                        className="input"
-                        type="text"
+                    <textarea
+                        className="textarea"
                         name="workout-description"
+                        rows="5"
+                        cols="100"
                         value={ this.state.workoutDescription }
                         onChange={ this.handleOnWorkoutDescriptionChange }
-                    /><br />
+                    ></textarea><br />
 
                     <button className="back-button" onClick={ this.props.showWorkoutList }>Back</button>
                     <button className="submit-button" type="submit">Submit</button>
