@@ -28,7 +28,7 @@ class RegimenWorkoutContainer extends React.Component {
     }
 
     async componentDidMount () {
-        const regimenWorkouts = await RegimenWorkoutModel.findRegimenWorkoutsByRegimenId(1);
+        const regimenWorkouts = await RegimenWorkoutModel.findRegimenWorkoutsByRegimenId(this.props.regimenId);
 
         this.setState({
             "regimenWorkouts": regimenWorkouts
@@ -53,7 +53,7 @@ class RegimenWorkoutContainer extends React.Component {
         const selectedRegimenWorkout = this.state.selectedRegimenWorkout;
 
         if (this.state.action === "create") {
-            const createdRegimenWorkout = await RegimenWorkoutModel.createRegimenWorkout(1, 1, reps, sets);
+            const createdRegimenWorkout = await RegimenWorkoutModel.createRegimenWorkout(this.props.regimenId, 1, reps, sets);
             regimenWorkouts.push(createdRegimenWorkout);
         } else {
             selectedRegimenWorkout["workoutId"] = workoutId;
