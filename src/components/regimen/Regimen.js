@@ -12,6 +12,7 @@ class Regimen extends React.Component {
         super(props);
 
         this.state = {
+            "regimenId": this.props.regimen && this.props.regimen.regimenId ? this.props.regimen.regimenId : -1,
             "regimenName": this.props.regimen && this.props.regimen.regimenName ? this.props.regimen.regimenName : "",
             "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : "",
             "regimenNameError": "",
@@ -96,6 +97,8 @@ class Regimen extends React.Component {
     }
 
     render () {
+        const regimenWorkout = this.state.regimenId > 0 ? <RegimenWorkoutContainer regimenId={ this.state.regimenId } /> : null;
+
         return (
             <>
                 <h2 className="form-header">{ this.props.headerName }</h2>
@@ -133,7 +136,7 @@ class Regimen extends React.Component {
                     <button className="submit-button" type="submit">Submit</button>
                 </form>
 
-                <RegimenWorkoutContainer />
+                { regimenWorkout }
             </>
         );
     }

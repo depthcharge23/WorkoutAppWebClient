@@ -118,7 +118,6 @@ class RegimenContainer extends React.Component {
                 break;
         }
 
-
         return (
             <>
                 { component }
