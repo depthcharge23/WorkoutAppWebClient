@@ -1,6 +1,9 @@
 import React from "react";
 import "./Workout.css";
 
+// Import Custom Components
+import Input from "../input/Input";
+
 // Import Models
 import WorkoutModel from "../../model/workout/WorkoutModel";
 
@@ -11,33 +14,22 @@ class Workout extends React.Component {
         this.state = {
             "workoutName": this.props.workout && this.props.workout.workoutName ? this.props.workout.workoutName : "",
             "workoutDescription": this.props.workout && this.props.workout.workoutDescription ? this.props.workout.workoutDescription : "",
-            "workoutNameError": "",
-            "workoutDescriptionError": ""
+            "workoutDescriptionError": "",
+            "isError": false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleOnWorkoutNameChange = this.handleOnWorkoutNameChange.bind(this);
         this.handleOnWorkoutDescriptionChange = this.handleOnWorkoutDescriptionChange.bind(this);
+
+        this.setWorkoutName = this.setWorkoutName.bind(this);
     }
 
-    async handleSubmit (e) {
+    handleSubmit (e) {
         e.preventDefault();
 
-        let error = await WorkoutModel.validateWorkoutName(this.state.workoutName);
         let hasError = false;
 
-        if (error) {
-            const element = document.querySelector(`input[name="workout-name"]`);
-            element.classList.add("error-input");
-
-            hasError = true;
-
-            this.setState({
-                "workoutNameError": error
-            });
-        }
-
-        error = WorkoutModel.validateWorkoutDescription(this.state.workoutDescription);
+        let error = WorkoutModel.validateWorkoutDescription(this.state.workoutDescription);
 
         if (error) {
             const element = document.querySelector(`input[name="workout-description"]`);
@@ -60,19 +52,10 @@ class Workout extends React.Component {
         }
     }
 
-    async handleOnWorkoutNameChange (e) {
-        const workoutName = e.target.value;
-        let error = await WorkoutModel.validateWorkoutName(workoutName);
-
-        if (error) {
-            e.target.classList.add("error-input");
-        } else {
-            e.target.classList.remove("error-input");
-        }
-
+    setWorkoutName (workoutName, isError) {
         this.setState({
             "workoutName": workoutName,
-            "workoutNameError": error
+            "isError": isError
         });
     }
 
@@ -93,23 +76,20 @@ class Workout extends React.Component {
     }
 
     render () {
+        const submitButton = this.state.workoutName && this.state.workoutDescription && !this.state.isError ? <button className="submit-button" type="submit">Submit</button> : null;
+
         return (
             <>
                 <h2 className="form-header">{ this.props.headerName }</h2>
 
                 <form className="form" onSubmit={ this.handleSubmit }>
-                    <label className="label" htmlFor="workout-name">
-                        Workout Name
-                    </label><br />
-
-                    <p className="error">{ this.state.workoutNameError }</p>
-
-                    <input
-                        className="input"
-                        type="text"
-                        name="workout-name"
+                    <Input 
+                        inputName="workout-name"
+                        inputNameDisplay="Workout Name"
                         value={ this.state.workoutName }
-                        onChange={ this.handleOnWorkoutNameChange }
+                        isAsync={ true }
+                        validate={ WorkoutModel.validateWorkoutName }
+                        callback={ this.setWorkoutName }
                     /><br />
 
                     <label className="label" htmlFor="workout-description">
@@ -128,7 +108,7 @@ class Workout extends React.Component {
                     ></textarea><br />
 
                     <button className="back-button" onClick={ this.props.showWorkoutList }>Back</button>
-                    <button className="submit-button" type="submit">Submit</button>
+                    { submitButton }
                 </form>
             </>
         );

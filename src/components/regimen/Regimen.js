@@ -27,35 +27,8 @@ class Regimen extends React.Component {
 
     handleSubmit (e) {
         e.preventDefault();
-
-        let error = RegimenModel.validateRegimenName(this.state.regimenName);
-        let hasError = false;
-
-        if (error) {
-            const element = document.querySelector(`input[name="regimen-name"]`);
-            element.classList.add("error-input");
-
-            hasError = true;
-
-            this.setState({
-                "regimenNameError": error
-            });
-        }
         
-        error = RegimenModel.validateRestBetweenWorkout(this.state.restBetweenWorkout);
-
-        if (error) {
-            const element = document.querySelector(`input[name="rest-between-workout"]`);
-            element.classList.add("error-input");
-
-            hasError = true;
-
-            this.setState({
-                "restBetweenWorkoutError": error
-            });
-        }
-        
-        if (!hasError) {
+        if (this.state.regimenName && this.state.restBetweenWorkout && !this.state.isError) {
             this.props.handleOnSubmit(this.state.regimenName, this.state.restBetweenWorkout);
 
             this.setState({
