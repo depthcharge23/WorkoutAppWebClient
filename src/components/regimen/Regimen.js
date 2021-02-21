@@ -3,6 +3,7 @@ import "./Regimen.css";
 
 // Import Custom Components
 import RegimenWorkoutContainer from "../regimen-workout-container/RegimenWorkoutContainer";
+import Input from "../input/Input";
 
 // Import Models
 import RegimenModel from "../../model/regimen/RegimenModel";
@@ -15,13 +16,13 @@ class Regimen extends React.Component {
             "regimenId": this.props.regimen && this.props.regimen.regimenId ? this.props.regimen.regimenId : -1,
             "regimenName": this.props.regimen && this.props.regimen.regimenName ? this.props.regimen.regimenName : "",
             "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : "",
-            "regimenNameError": "",
-            "restBetweenWorkoutError": ""
+            "isError": false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleOnRegimenNameChange = this.handleOnRegimenNameChange.bind(this);
-        this.handleOnRestBetweenWorkoutChange = this.handleOnRestBetweenWorkoutChange.bind(this);
+
+        this.setRegimenName = this.setRegimenName.bind(this);
+        this.setRestBetweenWorkout = this.setRestBetweenWorkout.bind(this);
     }
 
     handleSubmit (e) {
@@ -64,76 +65,49 @@ class Regimen extends React.Component {
         }
     }
 
-    handleOnRegimenNameChange (e) {
-        const regimenName = e.target.value;
-        let error = RegimenModel.validateRegimenName(regimenName);
-
-        if (error) {
-            e.target.classList.add("error-input");
-        } else {
-            e.target.classList.remove("error-input");
-        }
-
+    setRegimenName (regimenName, isError) {
         this.setState({
             "regimenName": regimenName,
-            "regimenNameError": error
+            "isError": isError
         });
     }
 
-    handleOnRestBetweenWorkoutChange (e) {
-        const restBetweenWorkout = e.target.value;
-        let error = RegimenModel.validateRestBetweenWorkout(restBetweenWorkout);
-
-        if (error) {
-            e.target.classList.add("error-input");
-        } else {
-            e.target.classList.remove("error-input");
-        }
-
+    setRestBetweenWorkout (restBetweenWorkout, isError) {
         this.setState({
             "restBetweenWorkout": restBetweenWorkout,
-            "restBetweenWorkoutError": error
+            "isError": isError
         });
     }
 
     render () {
         const regimenWorkout = this.state.regimenId > 0 ? <RegimenWorkoutContainer regimenId={ this.state.regimenId } /> : null;
+        const submitButton = this.state.regimenName && this.state.restBetweenWorkout && !this.state.isError ? <button className="submit-button" type="submit">Submit</button> : null;
 
         return (
             <>
                 <h2 className="form-header">{ this.props.headerName }</h2>
 
                 <form className="form" onSubmit={ this.handleSubmit }>
-                    <label className="label" htmlFor="regimen-name">
-                        Regimen Name
-                    </label><br />
-
-                    <p className="error">{ this.state.regimenNameError }</p>
-
-                    <input
-                        className="input"
-                        type="text"
-                        name="regimen-name"
+                    <Input 
+                        inputName="regimen-name"
+                        inputNameDisplay="Regimen Name"
                         value={ this.state.regimenName }
-                        onChange={ this.handleOnRegimenNameChange }
+                        isAsync={ false }
+                        validate={ RegimenModel.validateRegimenName }
+                        callback={ this.setRegimenName }
                     /><br />
 
-                    <label className="label" htmlFor="rest-between-workout">
-                        Rest Between Workout
-                    </label><br />
-
-                    <p className="error">{ this.state.restBetweenWorkoutError }</p>
-
-                    <input 
-                        className="input"
-                        type="integer"
-                        name="rest-between-workout"
+                    <Input 
+                        inputName="rest-between-workout"
+                        inputNameDisplay="Rest Between Workout"
                         value={ this.state.restBetweenWorkout }
-                        onChange={ this.handleOnRestBetweenWorkoutChange }
+                        isAsync={ false }
+                        validate={ RegimenModel.validateRestBetweenWorkout }
+                        callback={ this.setRestBetweenWorkout }
                     /><br />
 
                     <button className="back-button" onClick={ this.props.showRegimenList } >Back</button>
-                    <button className="submit-button" type="submit">Submit</button>
+                    { submitButton }
                 </form>
 
                 { regimenWorkout }
