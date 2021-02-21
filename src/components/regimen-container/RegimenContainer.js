@@ -50,11 +50,11 @@ class RegimenContainer extends React.Component {
 
     async handleOnSubmit (regimenName, restBetweenWorkout) {
         const regimens = this.state.regimens.slice();
-        const selectedRegimen = this.state.selectedRegimen;
+        let selectedRegimen = this.state.selectedRegimen;
 
         if (this.state.action === "create") {
-            const createdRegimen = await RegimenModel.createRegimen(regimenName, restBetweenWorkout);
-            regimens.push(createdRegimen);
+            selectedRegimen = await RegimenModel.createRegimen(regimenName, restBetweenWorkout);
+            regimens.push(selectedRegimen);
         } else {
             selectedRegimen["regimenName"] = regimenName;
             selectedRegimen["restBetweenWorkout"] = restBetweenWorkout;
