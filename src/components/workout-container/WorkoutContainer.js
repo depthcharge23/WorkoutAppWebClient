@@ -39,7 +39,7 @@ class WorkoutContainer extends React.Component {
         const workouts = this.state.workouts.slice();
         const workout = workouts[i];
 
-        const deletedWorkout = await WorkoutModel.deleteWorkoutByWorkoutId(workout["workoutId"]);
+        await WorkoutModel.deleteWorkoutByWorkoutId(workout["workoutId"]);
         
         workouts.splice(i, 1);
 

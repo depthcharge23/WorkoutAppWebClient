@@ -7,7 +7,6 @@ import RegimenWorkout from "../regimen-workout/RegimenWorkout";
 
 // Import Models
 import RegimenWorkoutModel from "../../model/regimen-workout/RegimenWorkoutModel";
-import RegimenList from "../regimen-list/RegimenList";
 
 class RegimenWorkoutContainer extends React.Component {
     constructor () {
@@ -40,7 +39,7 @@ class RegimenWorkoutContainer extends React.Component {
         const regimenWorkouts = this.state.regimenWorkouts.slice();
         const regimenWorkout = regimenWorkouts[i];
 
-        const deletedRegimenWorkout = await RegimenWorkoutModel.deleteRegimenWorkoutByRegimenWorkoutId(regimenWorkout["regimenWorkoutId"]);
+        await RegimenWorkoutModel.deleteRegimenWorkoutByRegimenWorkoutId(regimenWorkout["regimenWorkoutId"]);
 
         regimenWorkouts.splice(i, 1);
 

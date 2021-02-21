@@ -39,7 +39,7 @@ class RegimenContainer extends React.Component {
         const regimens = this.state.regimens.slice();
         const regimen = regimens[i];
 
-        const deletedRegimen = await RegimenModel.deleteRegimenByRegimenId(regimen["regimenId"]);
+        await RegimenModel.deleteRegimenByRegimenId(regimen["regimenId"]);
         
         regimens.splice(i, 1);
 
