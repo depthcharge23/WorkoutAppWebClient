@@ -1,6 +1,9 @@
 import React from "react";
 import "./RegimenWorkout.css";
 
+// Import Custom Components
+import RangeSlider from "../range-slider/RangeSlider";
+
 class RegimenWorkout extends React.Component {
     constructor (props) {
         super(props);
@@ -13,8 +16,8 @@ class RegimenWorkout extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOnWorkoutNameChange = this.handleOnWorkoutNameChange.bind(this);
-        this.handleOnSetsChange = this.handleOnSetsChange.bind(this);
-        this.handleOnRepsChange = this.handleOnRepsChange.bind(this);
+        this.setSets = this.setSets.bind(this);
+        this.setReps = this.setReps.bind(this);
     }
 
     handleSubmit (e) {
@@ -37,17 +40,13 @@ class RegimenWorkout extends React.Component {
         });
     }
 
-    handleOnSetsChange (e) {
-        const sets = e.target.value;
-
+    setSets (sets) {
         this.setState({
             "sets": sets
         });
     }
 
-    handleOnRepsChange (e) {
-        const reps = e.target.value;
-
+    setReps (reps) {
         this.setState({
             "reps": reps
         });
@@ -71,28 +70,24 @@ class RegimenWorkout extends React.Component {
                         onChange={ this.handleOnWorkoutNameChange }
                     /><br />
 
-                    <label className="label" htmlFor="sets">
-                        # of Sets
-                    </label><br />
-
-                    <input
-                        className="input"
-                        type="integer"
-                        name="sets"
+                    <RangeSlider 
+                        inputName="sets"
+                        inputNameDisplay="# of Sets"
+                        min="0"
+                        max="5"
+                        step="1"
                         value={ this.state.sets }
-                        onChange={ this.handleOnSetsChange }
+                        callback={ this.setSets }
                     /><br />
 
-                    <label className="label" htmlFor="reps">
-                        # of Reps
-                    </label><br />
-
-                    <input
-                        className="input"
-                        type="integer"
-                        name="reps"
+                    <RangeSlider 
+                        inputName="reps"
+                        inputNameDisplay="# of Reps"
+                        min="0"
+                        max="25"
+                        step="5"
                         value={ this.state.reps }
-                        onChange={ this.handleOnRepsChange }
+                        callback={ this.setReps }
                     /><br />
 
                     <button className="back-button" onClick={ this.props.showRegimenWorkoutList }>Back</button>

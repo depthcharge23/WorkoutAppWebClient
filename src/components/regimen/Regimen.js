@@ -75,6 +75,7 @@ class Regimen extends React.Component {
                         inputNameDisplay="Rest Between Workout"
                         min="0"
                         max="5"
+                        step="1"
                         value={ this.state.restBetweenWorkout }
                         unit="mins"
                         callback={ this.setRestBetweenWorkout }
