@@ -2,7 +2,7 @@ import React from "react";
 import "./RegimenWorkout.css";
 
 // Import Custom Components
-import RangeSlider from "../range-slider/RangeSlider";
+import RangeSlider from "../../components/range-slider/RangeSlider";
 
 class RegimenWorkout extends React.Component {
     constructor (props) {

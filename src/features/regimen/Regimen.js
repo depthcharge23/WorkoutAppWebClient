@@ -3,8 +3,8 @@ import "./Regimen.css";
 
 // Import Custom Components
 import RegimenWorkoutContainer from "../regimen-workout-container/RegimenWorkoutContainer";
-import Input from "../input/Input";
-import RangeSlider from "../range-slider/RangeSlider";
+import Input from "../../components/input/Input";
+import RangeSlider from "../../components/range-slider/RangeSlider";
 
 // Import Models
 import RegimenModel from "../../model/regimen/RegimenModel";

@@ -2,7 +2,7 @@ import React from "react";
 import "./Workout.css";
 
 // Import Custom Components
-import Input from "../input/Input";
+import Input from "../../components/input/Input";
 
 // Import Models
 import WorkoutModel from "../../model/workout/WorkoutModel";
