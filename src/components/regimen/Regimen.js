@@ -4,6 +4,7 @@ import "./Regimen.css";
 // Import Custom Components
 import RegimenWorkoutContainer from "../regimen-workout-container/RegimenWorkoutContainer";
 import Input from "../input/Input";
+import RangeSlider from "../range-slider/RangeSlider";
 
 // Import Models
 import RegimenModel from "../../model/regimen/RegimenModel";
@@ -15,7 +16,7 @@ class Regimen extends React.Component {
         this.state = {
             "regimenId": this.props.regimen && this.props.regimen.regimenId ? this.props.regimen.regimenId : -1,
             "regimenName": this.props.regimen && this.props.regimen.regimenName ? this.props.regimen.regimenName : "",
-            "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : "",
+            "restBetweenWorkout": this.props.regimen && this.props.regimen.restBetweenWorkout ? this.props.regimen.restBetweenWorkout : 1,
             "isError": false
         };
 
@@ -28,12 +29,12 @@ class Regimen extends React.Component {
     handleSubmit (e) {
         e.preventDefault();
         
-        if (this.state.regimenName && this.state.restBetweenWorkout && !this.state.isError) {
+        if (this.state.regimenName && !this.state.isError) {
             this.props.handleOnSubmit(this.state.regimenName, this.state.restBetweenWorkout);
 
             this.setState({
                 "regimenName": "",
-                "restBetweenWorkout": 0
+                "restBetweenWorkout": 1
             });
         }
     }
@@ -45,16 +46,15 @@ class Regimen extends React.Component {
         });
     }
 
-    setRestBetweenWorkout (restBetweenWorkout, isError) {
+    setRestBetweenWorkout (restBetweenWorkout) {
         this.setState({
-            "restBetweenWorkout": restBetweenWorkout,
-            "isError": isError
+            "restBetweenWorkout": restBetweenWorkout
         });
     }
 
     render () {
         const regimenWorkout = this.state.regimenId > 0 ? <RegimenWorkoutContainer regimenId={ this.state.regimenId } /> : null;
-        const submitButton = this.state.regimenName && this.state.restBetweenWorkout && !this.state.isError ? <button className="submit-button" type="submit">Submit</button> : null;
+        const submitButton = this.state.regimenName && !this.state.isError ? <button className="submit-button" type="submit">Submit</button> : null;
 
         return (
             <>
@@ -70,12 +70,13 @@ class Regimen extends React.Component {
                         callback={ this.setRegimenName }
                     /><br />
 
-                    <Input 
+                    <RangeSlider
                         inputName="rest-between-workout"
                         inputNameDisplay="Rest Between Workout"
+                        min="0"
+                        max="5"
                         value={ this.state.restBetweenWorkout }
-                        isAsync={ false }
-                        validate={ RegimenModel.validateRestBetweenWorkout }
+                        unit="mins"
                         callback={ this.setRestBetweenWorkout }
                     /><br />
 
