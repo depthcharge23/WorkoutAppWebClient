@@ -3,6 +3,7 @@ import "./Workout.css";
 
 // Import Custom Components
 import Input from "../../components/input/Input";
+import TextArea from "../../components/text-area/TextArea";
 
 // Import Models
 import WorkoutModel from "../../model/workout/WorkoutModel";
@@ -106,6 +107,8 @@ class Workout extends React.Component {
                         value={ this.state.workoutDescription }
                         onChange={ this.handleOnWorkoutDescriptionChange }
                     ></textarea><br />
+
+                    <TextArea /><br />
 
                     <button className="back-button" onClick={ this.props.showWorkoutList }>Back</button>
                     { submitButton }
