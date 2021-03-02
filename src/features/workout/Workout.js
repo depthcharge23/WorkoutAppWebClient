@@ -2,8 +2,8 @@ import React from "react";
 import "./Workout.css";
 
 // Import Custom Components
-import Input from "../../components/input/Input";
 import TextArea from "../../components/text-area/TextArea";
+import TypeAhead from "../../components/type-ahead/TypeAhead";
 
 // Import Models
 import WorkoutModel from "../../model/workout/WorkoutModel";
@@ -58,12 +58,11 @@ class Workout extends React.Component {
                 <h2 className="form-header">{ this.props.headerName }</h2>
 
                 <form className="form" onSubmit={ this.handleSubmit }>
-                    <Input 
-                        inputName="workout-name"
-                        inputNameDisplay="Workout Name"
+                    <TypeAhead 
+                        typeAheadName="workout-names"
+                        typeAheadNameDisplay="Workout Name"
                         value={ this.state.workoutName }
-                        isAsync={ true }
-                        validate={ WorkoutModel.validateWorkoutName }
+                        items={ ["Push Ups", "Pull Ups", "Squats", "Lunges"] }
                         callback={ this.setWorkoutName }
                     /><br />
 
