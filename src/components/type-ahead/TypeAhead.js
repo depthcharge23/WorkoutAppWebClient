@@ -61,10 +61,10 @@ const TypeAhead = (props) => {
             <p className="error">{ error }</p>
 
             <div className="type-ahead">
-                <input 
-                    type="text"
+                <input
                     id="type-ahead-input"
-                    list="data"
+                    type="text"
+                    autoComplete="off"
                     name={ props.typeAheadName }
                     value={ value }
                     onFocus={ handleOnFocus }

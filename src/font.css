@@ -1,7 +1,7 @@
-h1, h2, .delete-button, .create-button, .back-button, .submit-button, .input, .error, .textarea, .nav-item, .sign-out, .value-box {
+h1, h2, .delete-button, .create-button, .back-button, .submit-button, .input, .error, .textarea, .nav-item, .sign-out, .value-box, #type-ahead-input {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.item, .label {
+.item, .label, .type-ahead-list-item {
     font-family: 'Courier New', Courier, monospace;
 }
