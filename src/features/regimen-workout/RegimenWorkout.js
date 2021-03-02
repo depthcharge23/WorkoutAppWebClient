@@ -12,7 +12,11 @@ class RegimenWorkout extends React.Component {
         this.state = {
             "workoutName": this.props.regimenWorkout && this.props.regimenWorkout.workoutName ? this.props.regimenWorkout.workoutName : "",
             "sets": this.props.regimenWorkout && this.props.regimenWorkout.sets ? this.props.regimenWorkout.sets : 0,
-            "reps": this.props.regimenWorkout && this.props.regimenWorkout.reps ? this.props.regimenWorkout.reps : 0
+            "reps": this.props.regimenWorkout && this.props.regimenWorkout.reps ? this.props.regimenWorkout.reps : 0,
+            "workouts": [],
+            "workoutNames": [],
+            "selectedWorkout": null,
+            "isError": false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,18 +29,27 @@ class RegimenWorkout extends React.Component {
     handleSubmit (e) {
         e.preventDefault();
 
-        this.props.handleOnSubmit(1, this.state.reps, this.state.sets);
+        if (this.state.selectedWorkout && !this.state.isError) {
+            this.props.handleOnSubmit(this.state.selectedWorkout["workoutId"], this.state.reps, this.state.sets);
 
-        this.setState({
-            "workoutName": "",
-            "sets": 0,
-            "reps": 0
-        });
+            this.setState({
+                "workoutName": "",
+                "sets": 0,
+                "reps": 0,
+                "selectedWorkout": null
+            });
+        }        
     }
 
-    setWorkoutName (workoutName) {
+    setWorkoutName (workoutName, isError) {
+        const selectedWorkout = this.state.workouts.find(workout => {
+            return workout["workoutName"] === workoutName;
+        });
+
         this.setState({
-            "workoutName": workoutName
+            "workoutName": workoutName,
+            "isError": isError,
+            "selectedWorkout": selectedWorkout ? selectedWorkout : null
         });
     }
 
@@ -53,6 +66,8 @@ class RegimenWorkout extends React.Component {
     }
 
     render () {
+        const submitButton = this.state.selectedWorkout && !this.state.isError ? <button className="submit-button" type="submit">Submit</button> : null;
+
         return (
             <>
                 <h2 className="form-header">Create Regimen Workout</h2>
@@ -62,7 +77,7 @@ class RegimenWorkout extends React.Component {
                         typeAheadName="workout-name"
                         typeAheadNameDisplay="Workout Name"
                         value={ this.state.workoutName }
-                        items={ ["Pull Ups", "Push Ups", "Squats", "Lunges"] }
+                        items={this.state.workoutNames }
                         callback={ this.setWorkoutName }
                     /><br />
 
@@ -87,7 +102,7 @@ class RegimenWorkout extends React.Component {
                     /><br />
 
                     <button className="back-button" onClick={ this.props.showRegimenWorkoutList }>Back</button>
-                    <button className="submit-button" type="submit">Submit</button>
+                    { submitButton }
                 </form>
             </>
         );
