@@ -118,5 +118,5 @@ button:hover {
 
 .error-input {
     color: red;
-    border-color: red;
+    border-color: red !important;
 }

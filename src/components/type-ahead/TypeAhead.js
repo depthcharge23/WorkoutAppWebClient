@@ -35,7 +35,7 @@ const TypeAhead = (props) => {
 
         setValue(elementVal);
         setFilterItems(newItems);
-        setShowItems(true);
+        setShowItems(newItems && newItems.length > 0);
         setError(typeAheadError);
 
         props.callback(elementVal, typeAheadError ? true : false);
