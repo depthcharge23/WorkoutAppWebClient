@@ -1,0 +1,33 @@
+.type-ahead {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+#type-ahead-input {
+    outline: none;
+    border: 3px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: -3px;
+    z-index: 1;
+}
+
+.type-ahead-list {
+    list-style: none;
+    background-color: #ededed;
+    border: 2px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.type-ahead-list-item {
+    padding: 5px;
+}
+
+.type-ahead-list-item:hover {
+    cursor: pointer;
+    background-color: #c9c9c9;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+}
