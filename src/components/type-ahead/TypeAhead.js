@@ -18,22 +18,6 @@ const TypeAhead = (props) => {
         setShowItems(true);
     };
 
-    const handleOnBlur = (e) => {
-        const elementVal = e.target.value;
-        const foundItem = props.items.find(item => {
-            return item.toUpperCase().indexOf(elementVal.toUpperCase()) > -1;
-        });
-
-        if (foundItem && filterItems.length === 1) {
-            e.target.classList.remove("error-input");
-            setValue(foundItem);
-            setShowItems(false);
-        } else {
-            e.target.classList.add("error-input");            
-            setError("Please select an item from the list.");
-        }
-    };
-
     const handleOnChange = (e) => {
         const elementVal = e.target.value;
         let typeAheadError = "";
@@ -84,7 +68,6 @@ const TypeAhead = (props) => {
                     name={ props.typeAheadName }
                     value={ value }
                     onFocus={ handleOnFocus }
-                    onBlur={ handleOnBlur }
                     onChange={ handleOnChange }
                 />
 

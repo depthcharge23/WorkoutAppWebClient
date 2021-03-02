@@ -3,6 +3,7 @@ import "./RegimenWorkout.css";
 
 // Import Custom Components
 import RangeSlider from "../../components/range-slider/RangeSlider";
+import TypeAhead from "../../components/type-ahead/TypeAhead";
 
 class RegimenWorkout extends React.Component {
     constructor (props) {
@@ -15,9 +16,10 @@ class RegimenWorkout extends React.Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleOnWorkoutNameChange = this.handleOnWorkoutNameChange.bind(this);
+
         this.setSets = this.setSets.bind(this);
         this.setReps = this.setReps.bind(this);
+        this.setWorkoutName = this.setWorkoutName.bind(this);
     }
 
     handleSubmit (e) {
@@ -32,9 +34,7 @@ class RegimenWorkout extends React.Component {
         });
     }
 
-    handleOnWorkoutNameChange (e) {
-        const workoutName = e.target.value;
-
+    setWorkoutName (workoutName) {
         this.setState({
             "workoutName": workoutName
         });
@@ -58,16 +58,12 @@ class RegimenWorkout extends React.Component {
                 <h2 className="form-header">Create Regimen Workout</h2>
                 
                 <form className="form" onSubmit={ this.handleSubmit }>
-                    <label className="label" htmlFor="workout-name">
-                        Workout Name
-                    </label><br />
-
-                    <input
-                        className="input"
-                        type="text"
-                        name="workout-name"
+                    <TypeAhead
+                        typeAheadName="workout-name"
+                        typeAheadNameDisplay="Workout Name"
                         value={ this.state.workoutName }
-                        onChange={ this.handleOnWorkoutNameChange }
+                        items={ ["Pull Ups", "Push Ups", "Squats", "Lunges"] }
+                        callback={ this.setWorkoutName }
                     /><br />
 
                     <RangeSlider 
