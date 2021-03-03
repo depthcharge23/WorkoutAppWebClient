@@ -15,7 +15,7 @@ const TypeAhead = (props) => {
         });
 
         setFilterItems(newItems);
-        setShowItems(true);
+        setShowItems(newItems && newItems.length > 0);
     };
 
     const handleOnChange = (e) => {
@@ -50,6 +50,8 @@ const TypeAhead = (props) => {
         setValue(elementVal);
         setShowItems(false);
         setError("");
+
+        props.callback(elementVal, false);
     };
 
     return (

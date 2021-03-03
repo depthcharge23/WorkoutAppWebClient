@@ -5,6 +5,9 @@ import "./RegimenWorkout.css";
 import RangeSlider from "../../components/range-slider/RangeSlider";
 import TypeAhead from "../../components/type-ahead/TypeAhead";
 
+// Import Models
+import WorkoutModel from "../../model/workout/WorkoutModel";
+
 class RegimenWorkout extends React.Component {
     constructor (props) {
         super(props);
@@ -24,6 +27,18 @@ class RegimenWorkout extends React.Component {
         this.setSets = this.setSets.bind(this);
         this.setReps = this.setReps.bind(this);
         this.setWorkoutName = this.setWorkoutName.bind(this);
+    }
+
+    async componentDidMount () {
+        const workouts = await WorkoutModel.findAllWorkouts();
+        const workoutNames = workouts.map(workout => {
+            return workout["workoutName"];
+        });
+
+        this.setState({
+            "workouts": workouts,
+            "workoutNames": workoutNames
+        });
     }
 
     handleSubmit (e) {
