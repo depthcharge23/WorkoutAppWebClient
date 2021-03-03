@@ -109,6 +109,7 @@ class RegimenWorkoutContainer extends React.Component {
                 break;
             case "regimenWorkout":
                 component = <RegimenWorkout
+                    title={ this.state.action === "create" ? "Add Workout" : "Update Workout" }
                     regimenWorkout={ this.state.selectedRegimenWorkout }
                     handleOnSubmit={ this.handleOnSubmit }
                     showRegimenWorkoutList={ this.showRegimenWorkoutList }

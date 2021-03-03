@@ -85,7 +85,7 @@ class RegimenWorkout extends React.Component {
 
         return (
             <>
-                <h2 className="form-header">Create Regimen Workout</h2>
+                <h2 className="form-header">{ this.props.title }</h2>
                 
                 <form className="form" onSubmit={ this.handleSubmit }>
                     <TypeAhead
